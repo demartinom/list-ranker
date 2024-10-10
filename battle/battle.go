@@ -1,6 +1,9 @@
 package battle
 
-import "math/rand"
+import (
+	"fmt"
+	"math/rand"
+)
 
 type Item struct {
 	Name  string
@@ -17,6 +20,22 @@ func (item *Item) Lose() {
 
 func Battle(list *[]Item) {
 	battlers := chooseBattlers(*list)
+	var selection string
+
+	fmt.Println("Choose which item you prefer:")
+	fmt.Println("1. " + battlers[0].Name)
+	fmt.Println("2. " + battlers[1].Name)
+
+	fmt.Scanln(&selection)
+
+	switch selection {
+	case "1":
+		battlers[0].Win()
+		battlers[1].Lose()
+	case "2":
+		battlers[1].Win()
+		battlers[0].Lose()
+	}
 }
 
 func chooseBattlers(list []Item) []Item {
