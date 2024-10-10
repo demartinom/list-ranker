@@ -29,5 +29,5 @@ func main() {
 		log.Fatal(err)
 	}
 
-	itemSlice, err := filehandler.ConvertToSlice(listItems)
+	itemSlice := filehandler.ConvertToSlice(listItems)
 }

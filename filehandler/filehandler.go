@@ -5,12 +5,12 @@ type Item struct {
 	Score int
 }
 
-func ConvertToSlice(listInput [][]string) ([]Item, error) {
+func ConvertToSlice(listInput [][]string) []Item {
 	var itemsList []Item
 
 	for _, itemInput := range listInput {
 		itemsList = append(itemsList, Item{itemInput[0], 0})
 	}
 
-	return itemsList, nil
+	return itemsList
 }
