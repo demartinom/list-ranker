@@ -21,6 +21,8 @@ func main() {
 	defer file.Close()
 
 	reader := csv.NewReader(file)
+	// Read header line so it is not passed into convert function
+	reader.Read()
 
 	listItems, err := reader.ReadAll()
 	if err != nil {
