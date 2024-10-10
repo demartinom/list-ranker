@@ -1,7 +1,10 @@
 package battle
 
-import "github.com/demartinom/list-ranker/filehandler"
+type Item struct {
+	Name  string
+	Score int
+}
 
-func Battle([]filehandler.Item) {
+func Battle([]Item) {
 
 }

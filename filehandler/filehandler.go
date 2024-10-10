@@ -1,15 +1,12 @@
 package filehandler
 
-type Item struct {
-	Name  string
-	Score int
-}
+import "github.com/demartinom/list-ranker/battle"
 
-func ConvertToSlice(listInput [][]string) []Item {
-	var itemsList []Item
+func ConvertToSlice(listInput [][]string) []battle.Item {
+	var itemsList []battle.Item
 
 	for _, itemInput := range listInput {
-		itemsList = append(itemsList, Item{itemInput[0], 0})
+		itemsList = append(itemsList, battle.Item{Name: itemInput[0], Score: 0})
 	}
 
 	return itemsList
