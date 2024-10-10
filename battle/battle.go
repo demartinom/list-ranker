@@ -38,7 +38,7 @@ func Battle(list *[]Item) {
 	}
 }
 
-func chooseBattlers(list []Item) []Item {
+func chooseBattlers(list []Item) []*Item {
 	fighterOneIndex := rand.Intn(len(list))
 	fighterTwoIndex := rand.Intn(len(list))
 
@@ -46,9 +46,9 @@ func chooseBattlers(list []Item) []Item {
 		fighterTwoIndex = rand.Intn(len(list))
 	}
 
-	fighterOne := list[fighterOneIndex]
-	fighterTwo := list[fighterTwoIndex]
+	fighterOne := &list[fighterOneIndex]
+	fighterTwo := &list[fighterTwoIndex]
 
-	combatants := []Item{fighterOne, fighterTwo}
+	combatants := []*Item{fighterOne, fighterTwo}
 	return combatants
 }
