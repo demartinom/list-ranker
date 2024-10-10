@@ -32,5 +32,5 @@ func main() {
 
 	itemSlice := filehandler.ConvertToSlice(listItems)
 
-	battle.Battle(itemSlice)
+	battle.Battle(&itemSlice)
 }

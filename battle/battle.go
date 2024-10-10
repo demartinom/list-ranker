@@ -15,8 +15,8 @@ func (item *Item) Lose() {
 	item.Score--
 }
 
-func Battle(list []Item) {
-	battlers := chooseBattlers(list)
+func Battle(list *[]Item) {
+	battlers := chooseBattlers(*list)
 }
 
 func chooseBattlers(list []Item) []Item {
