@@ -3,9 +3,10 @@ package main
 import (
 	"encoding/csv"
 	"flag"
-	"fmt"
 	"log"
 	"os"
+
+	"github.com/demartinom/list-ranker/filehandler"
 )
 
 func main() {
@@ -21,12 +22,10 @@ func main() {
 
 	reader := csv.NewReader(file)
 
-	records, err := reader.ReadAll()
+	listItems, err := reader.ReadAll()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	for _, v := range records {
-		fmt.Println(v[0])
-	}
+	itemSlice, err := filehandler.ConvertToSlice(listItems)
 }
