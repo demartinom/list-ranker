@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/demartinom/list-ranker/battle"
 	"github.com/demartinom/list-ranker/filehandler"
 )
 
@@ -30,4 +31,6 @@ func main() {
 	}
 
 	itemSlice := filehandler.ConvertToSlice(listItems)
+
+	battle.Battle(itemSlice)
 }
