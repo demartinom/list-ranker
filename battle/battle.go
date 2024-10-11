@@ -14,14 +14,15 @@ func (item *Item) Win() {
 	item.Score++
 }
 
-func (item *Item) Lose(list *[]Item, index int) {
+func (item *Item) Lose(list *[]Item, index int, results *[]string) {
 	item.Score--
 	if item.Score <= -2 {
-		RemoveLoser(list, index)
+		RemoveLoser(list, index, results)
 	}
 }
 
 func Battle(list *[]Item) {
+	var results []string
 	for len(*list) > 1 {
 		battlers, indexes := chooseBattlers(*list)
 		var selection string
@@ -37,12 +38,12 @@ func Battle(list *[]Item) {
 			switch selection {
 			case "1":
 				battlers[0].Win()
-				battlers[1].Lose(list, indexes[1])
+				battlers[1].Lose(list, indexes[1], &results)
 				fmt.Println(list)
 				break selectloop
 			case "2":
 				battlers[1].Win()
-				battlers[0].Lose(list, indexes[0])
+				battlers[0].Lose(list, indexes[0], &results)
 				fmt.Println(list)
 				break selectloop
 			default:
@@ -70,6 +71,8 @@ func chooseBattlers(list []Item) ([]*Item, []int) {
 	return combatants, indexes
 }
 
-func RemoveLoser(list *[]Item, index int) {
+func RemoveLoser(list *[]Item, index int, results *[]string) {
+	placement := fmt.Sprintf("%d: %s", len(*list), (*list)[index].Name)
+	*results = append(*results, placement)
 	*list = append((*list)[:index], (*list)[index+1:]...)
 }
