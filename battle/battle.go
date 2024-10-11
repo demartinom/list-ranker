@@ -19,22 +19,33 @@ func (item *Item) Lose() {
 }
 
 func Battle(list *[]Item) {
-	battlers := chooseBattlers(*list)
-	var selection string
+	for len(*list) > 1 {
+		battlers := chooseBattlers(*list)
+		var selection string
 
-	fmt.Println("Choose which item you prefer:")
-	fmt.Println("1. " + battlers[0].Name)
-	fmt.Println("2. " + battlers[1].Name)
+		fmt.Println("Choose which item you prefer:")
+		fmt.Println("1. " + battlers[0].Name)
+		fmt.Println("2. " + battlers[1].Name)
 
-	fmt.Scanln(&selection)
+	selectloop:
+		for {
+			fmt.Scanln(&selection)
 
-	switch selection {
-	case "1":
-		battlers[0].Win()
-		battlers[1].Lose()
-	case "2":
-		battlers[1].Win()
-		battlers[0].Lose()
+			switch selection {
+			case "1":
+				battlers[0].Win()
+				battlers[1].Lose()
+				break selectloop
+			case "2":
+				battlers[1].Win()
+				battlers[0].Lose()
+				break selectloop
+			default:
+				fmt.Println("Invalid input")
+				fmt.Println("1. " + battlers[0].Name)
+				fmt.Println("2. " + battlers[1].Name)
+			}
+		}
 	}
 }
 
