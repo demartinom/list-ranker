@@ -12,7 +12,9 @@ type Item struct {
 }
 
 func (item *Item) Win() {
-	item.Score++
+	if item.Score < 5 {
+		item.Score++
+	}
 }
 
 func (item *Item) Lose(list *[]Item, index int, results *[]string) {
