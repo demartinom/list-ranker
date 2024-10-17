@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/csv"
 	"flag"
+	"fmt"
 	"log"
 	"os"
 
@@ -32,5 +33,16 @@ func main() {
 
 	itemSlice := filehandler.ConvertToSlice(listItems)
 
-	battle.Battle(&itemSlice)
+	var ready string
+
+	fmt.Println("Welcome to List Ranker!")
+	fmt.Println("Ready to play? (y/n)")
+	fmt.Scanln(&ready)
+
+	switch ready {
+	case "y":
+		battle.Battle(&itemSlice)
+	default:
+		break
+	}
 }
