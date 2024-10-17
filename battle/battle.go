@@ -61,15 +61,6 @@ func Battle(list *[]Item) {
 	endResult(results, list)
 }
 
-func endResult(results []string, list *[]Item) {
-	results = append(results, fmt.Sprintf("1. %s", (*list)[0].Name))
-	slices.Reverse(results)
-	fmt.Println("Your Results:")
-	for _, item := range results {
-		fmt.Println(item)
-	}
-}
-
 func chooseBattlers(list []Item) ([]*Item, []int) {
 	fighterOneIndex := rand.Intn(len(list))
 	fighterTwoIndex := rand.Intn(len(list))
@@ -90,4 +81,13 @@ func RemoveLoser(list *[]Item, index int, results *[]string) {
 	placement := fmt.Sprintf("%d: %s", len(*list), (*list)[index].Name)
 	*results = append(*results, placement)
 	*list = append((*list)[:index], (*list)[index+1:]...)
+}
+
+func endResult(results []string, list *[]Item) {
+	results = append(results, fmt.Sprintf("1. %s", (*list)[0].Name))
+	slices.Reverse(results)
+	fmt.Println("Your Results:")
+	for _, item := range results {
+		fmt.Println(item)
+	}
 }
