@@ -23,9 +23,12 @@ func (item *Item) Lose(list *[]Item, index int, results *[]string) {
 
 func Battle(list *[]Item) {
 	var results []string
+
 	for len(*list) > 1 {
 		battlers, indexes := chooseBattlers(*list)
 		var selection string
+
+		fmt.Printf("Remaining items : %d\n", len(*list))
 
 		fmt.Println("Choose which item you prefer:")
 		fmt.Println("1. " + battlers[0].Name)
