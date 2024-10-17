@@ -39,12 +39,10 @@ func Battle(list *[]Item) {
 			case "1":
 				battlers[0].Win()
 				battlers[1].Lose(list, indexes[1], &results)
-				fmt.Println(list)
 				break selectloop
 			case "2":
 				battlers[1].Win()
 				battlers[0].Lose(list, indexes[0], &results)
-				fmt.Println(list)
 				break selectloop
 			default:
 				fmt.Println("Invalid input")
