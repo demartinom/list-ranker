@@ -3,6 +3,7 @@ package battle
 import (
 	"fmt"
 	"math/rand"
+	"slices"
 )
 
 type Item struct {
@@ -56,6 +57,16 @@ func Battle(list *[]Item) {
 				fmt.Println("2. " + battlers[1].Name)
 			}
 		}
+	}
+	endResult(results, list)
+}
+
+func endResult(results []string, list *[]Item) {
+	results = append(results, fmt.Sprintf("1. %s", (*list)[0].Name))
+	slices.Reverse(results)
+	fmt.Println("Your Results:")
+	for _, item := range results {
+		fmt.Println(item)
 	}
 }
 
