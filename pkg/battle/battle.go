@@ -3,7 +3,8 @@ package battle
 import "fmt"
 
 func Battle(list *[]Item, input input, output output) {
-
+	battlers, _ := input.chooseBattlers(*list)
+	output.Fight(battlers)
 }
 
 // func Battle(list *[]Item) {
