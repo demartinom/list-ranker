@@ -1,9 +1,28 @@
 package battle
 
-// type Item struct {
-// 	Name  string
-// 	Score int
-// }
+import (
+	"fmt"
+	"math/rand"
+)
+
+type CLIInput struct{}
+
+func (c CLIInput) chooseBattlers(list []Item) ([]*Item, []int) {
+	fighterOneIndex := rand.Intn(len(list))
+	fighterTwoIndex := rand.Intn(len(list))
+
+	for fighterOneIndex == fighterTwoIndex {
+		fighterTwoIndex = rand.Intn(len(list))
+	}
+
+	fighterOne := &list[fighterOneIndex]
+	fighterTwo := &list[fighterTwoIndex]
+
+	combatants := []*Item{fighterOne, fighterTwo}
+	indexes := []int{fighterOneIndex, fighterTwoIndex}
+	return combatants, indexes
+}
+
 
 // // Increment winner of battles score. Capped at 5 to increase game speed.
 // func (item *Item) Win() {
