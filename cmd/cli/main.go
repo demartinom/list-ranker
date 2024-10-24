@@ -40,7 +40,7 @@ func main() {
 
 	switch ready {
 	case "y":
-		battle.Battle(&itemSlice)
+		battle.Battle(&itemSlice, battle.CLIInput{}, battle.CLIOutput{})
 	default:
 		break
 	}
