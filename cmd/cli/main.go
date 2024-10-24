@@ -7,12 +7,11 @@ import (
 	"log"
 	"os"
 
-	"github.com/demartinom/list-ranker/battle"
-	"github.com/demartinom/list-ranker/filehandler"
+	"github.com/demartinom/list-ranker/pkg/battle"
 )
 
 func main() {
-	list := flag.String("list", "cities.csv", "list to use for ranking")
+	list := flag.String("list", "game-data/cities.csv", "list to use for ranking")
 	flag.Parse()
 
 	file, err := os.Open(*list)
@@ -31,7 +30,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	itemSlice := filehandler.ConvertToSlice(listItems)
+	itemSlice := battle.ConvertToSlice(listItems)
 
 	var ready string
 
