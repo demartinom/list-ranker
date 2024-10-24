@@ -1,45 +1,7 @@
 package battle
 
-import (
-	"fmt"
-	"math/rand"
-)
+func Battle(list *[]Item, input input, output output) {
 
-type input interface {
-	chooseBattlers(list []Item) ([]*Item, []int)
-}
-
-type CLIInput struct{}
-
-func (c CLIInput) chooseBattlers(list []Item) ([]*Item, []int) {
-	fighterOneIndex := rand.Intn(len(list))
-	fighterTwoIndex := rand.Intn(len(list))
-
-	for fighterOneIndex == fighterTwoIndex {
-		fighterTwoIndex = rand.Intn(len(list))
-	}
-
-	fighterOne := &list[fighterOneIndex]
-	fighterTwo := &list[fighterTwoIndex]
-
-	combatants := []*Item{fighterOne, fighterTwo}
-	indexes := []int{fighterOneIndex, fighterTwoIndex}
-	return combatants, indexes
-}
-
-type CLIOutput struct{}
-
-func (c CLIOutput) RemainingItems(count int) {
-	fmt.Printf("Remaining items : %d\n", count)
-}
-
-func Battle(list *[]Item) {
-
-}
-
-type Item struct {
-	Name  string
-	Score int
 }
 
 // // Increment winner of battles score. Capped at 5 to increase game speed.
