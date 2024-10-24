@@ -5,6 +5,10 @@ import (
 	"math/rand"
 )
 
+type input interface {
+	chooseBattlers(list []Item) ([]*Item, []int)
+}
+
 type CLIInput struct{}
 
 func (c CLIInput) chooseBattlers(list []Item) ([]*Item, []int) {
