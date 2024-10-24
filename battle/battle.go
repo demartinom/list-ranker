@@ -11,12 +11,15 @@ type Item struct {
 	Score int
 }
 
+// Increment winner of battles score. Capped at 5 to increase game speed.
 func (item *Item) Win() {
 	if item.Score < 5 {
 		item.Score++
 	}
 }
 
+// Decrement loser of battles score.
+// If score drops below -2 they will be removed from the game
 func (item *Item) Lose(list *[]Item, index int, results *[]string) {
 	item.Score--
 	if len(*list) == 2 {
@@ -63,6 +66,8 @@ func Battle(list *[]Item) {
 	endResult(results, list)
 }
 
+// Selects two items at random from pool of items.
+// Ensures the same item isn't listed as both options
 func chooseBattlers(list []Item) ([]*Item, []int) {
 	fighterOneIndex := rand.Intn(len(list))
 	fighterTwoIndex := rand.Intn(len(list))
@@ -79,12 +84,15 @@ func chooseBattlers(list []Item) ([]*Item, []int) {
 	return combatants, indexes
 }
 
+// When score threshold met, item is removed from pool of items
+// and added to final ranking
 func RemoveLoser(list *[]Item, index int, results *[]string) {
 	placement := fmt.Sprintf("%d: %s", len(*list), (*list)[index].Name)
 	*results = append(*results, placement)
 	*list = append((*list)[:index], (*list)[index+1:]...)
 }
 
+// Prints out the final item rankings
 func endResult(results []string, list *[]Item) {
 	results = append(results, fmt.Sprintf("1. %s", (*list)[0].Name))
 	slices.Reverse(results)
