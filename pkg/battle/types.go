@@ -28,10 +28,17 @@ func (c CLIInput) chooseBattlers(list []Item) ([]*Item, []int) {
 }
 
 type output interface {
+	Fight(battlers []*Item)
 	RemainingItems(count int)
 }
 
 type CLIOutput struct{}
+
+func (c CLIOutput) Fight(battlers []*Item) {
+	fmt.Println("Choose which item you prefer:")
+	fmt.Println("1. " + battlers[0].Name)
+	fmt.Println("2. " + battlers[1].Name)
+}
 
 func (c CLIOutput) RemainingItems(count int) {
 	fmt.Printf("Remaining items : %d\n", count)
