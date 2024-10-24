@@ -27,6 +27,20 @@ func (c CLIInput) chooseBattlers(list []Item) ([]*Item, []int) {
 	return combatants, indexes
 }
 
+type CLIOutput struct{}
+
+func (c CLIOutput) RemainingItems(count int) {
+	fmt.Printf("Remaining items : %d\n", count)
+}
+
+func Battle(list *[]Item) {
+
+}
+
+type Item struct {
+	Name  string
+	Score int
+}
 
 // // Increment winner of battles score. Capped at 5 to increase game speed.
 // func (item *Item) Win() {
