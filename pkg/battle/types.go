@@ -28,16 +28,36 @@ func (c CLIInput) chooseBattlers(list []Item) ([]*Item, []int) {
 }
 
 type output interface {
-	Fight(battlers []*Item)
 	RemainingItems(list *[]Item)
+	Fight(battlers []*Item, indexes []int, list *[]Item, results *[]string)
 }
 
 type CLIOutput struct{}
 
-func (c CLIOutput) Fight(battlers []*Item) {
+func (c CLIOutput) Fight(battlers []*Item, indexes []int, list *[]Item, results *[]string) {
+	var selection string
+
 	fmt.Println("Choose which item you prefer:")
 	fmt.Println("1. " + battlers[0].Name)
 	fmt.Println("2. " + battlers[1].Name)
+
+	for {
+		fmt.Scanln(&selection)
+
+		switch selection {
+		case "1":
+			battlers[0].Win()
+			battlers[1].Lose(list, indexes[1], results)
+		case "2":
+			battlers[1].Win()
+			battlers[0].Lose(list, indexes[0], results)
+		default:
+			fmt.Println("Invalid input")
+			fmt.Println("1. " + battlers[0].Name)
+			fmt.Println("2. " + battlers[1].Name)
+		}
+	}
+
 }
 
 func (c CLIOutput) RemainingItems(list *[]Item) {
