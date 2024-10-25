@@ -3,9 +3,10 @@ package battle
 import "fmt"
 
 func Battle(list *[]Item, input input, output output) {
-	battlers, _ := input.chooseBattlers(*list)
+	var results []string
+	battlers, indexes := input.chooseBattlers(*list)
 	output.RemainingItems(list)
-	output.Fight(battlers)
+	output.Fight(battlers, indexes, list, &results)
 }
 
 func RemoveLoser(list *[]Item, index int, results *[]string) {
