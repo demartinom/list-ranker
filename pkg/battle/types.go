@@ -48,9 +48,11 @@ func (c CLIOutput) Fight(battlers []*Item, indexes []int, list *[]Item, results 
 		case "1":
 			battlers[0].Win()
 			battlers[1].Lose(list, indexes[1], results)
+			return
 		case "2":
 			battlers[1].Win()
 			battlers[0].Lose(list, indexes[0], results)
+			return
 		default:
 			fmt.Println("Invalid input")
 			fmt.Println("1. " + battlers[0].Name)
