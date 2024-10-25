@@ -3,6 +3,7 @@ package battle
 import (
 	"fmt"
 	"math/rand"
+	"slices"
 )
 
 type input interface {
@@ -30,6 +31,7 @@ func (c CLIInput) chooseBattlers(list []Item) ([]*Item, []int) {
 type output interface {
 	RemainingItems(list *[]Item)
 	Fight(battlers []*Item, indexes []int, list *[]Item, results *[]string)
+	Result(results []string, list *[]Item)
 }
 
 type CLIOutput struct{}
@@ -64,6 +66,15 @@ func (c CLIOutput) Fight(battlers []*Item, indexes []int, list *[]Item, results 
 
 func (c CLIOutput) RemainingItems(list *[]Item) {
 	fmt.Printf("Remaining items : %d\n", len(*list))
+}
+
+func (c CLIOutput) Result(results []string, list *[]Item) {
+	results = append(results, fmt.Sprintf("1. %s", (*list)[0].Name))
+	slices.Reverse(results)
+	fmt.Println("Your Results:")
+	for _, item := range results {
+		fmt.Println(item)
+	}
 }
 
 type Item struct {
