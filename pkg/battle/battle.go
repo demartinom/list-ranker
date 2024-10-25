@@ -8,6 +8,12 @@ func Battle(list *[]Item, input input, output output) {
 	output.Fight(battlers)
 }
 
+func RemoveLoser(list *[]Item, index int, results *[]string) {
+	placement := fmt.Sprintf("%d: %s", len(*list), (*list)[index].Name)
+	*results = append(*results, placement)
+	*list = append((*list)[:index], (*list)[index+1:]...)
+}
+
 // func Battle(list *[]Item) {
 // 	var results []string
 
@@ -64,11 +70,6 @@ func Battle(list *[]Item, input input, output output) {
 
 // When score threshold met, item is removed from pool of items
 // and added to final ranking
-func RemoveLoser(list *[]Item, index int, results *[]string) {
-	placement := fmt.Sprintf("%d: %s", len(*list), (*list)[index].Name)
-	*results = append(*results, placement)
-	*list = append((*list)[:index], (*list)[index+1:]...)
-}
 
 // // Prints out the final item rankings
 // func endResult(results []string, list *[]Item) {
