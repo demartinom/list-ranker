@@ -1,15 +1,14 @@
 package models
 
 import (
-	"fmt"
 	"io/fs"
 	"log"
 	"path/filepath"
 )
 
-func SendPremade()  {
+func PremadeList() []string {
 	files := getFileNames()
-	fmt.Println(files)
+	return files
 }
 
 func getFileNames() []string {
