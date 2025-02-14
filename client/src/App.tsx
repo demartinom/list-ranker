@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPremades } from "./api/api";
+import { getPremades, sendChoice } from "./api/api";
 
 export default function App() {
   const [premadeLists, setPremadeLists] = useState([]);
@@ -13,7 +13,10 @@ export default function App() {
   }, []);
 
   const premadeOptions = premadeLists.map((item) => (
-    <button key={item}>{item}</button>
+    <button key={item} onClick={() => sendChoice(item)}>
+      {item}
+    </button>
   ));
+
   return <div>{premadeLists.length > 0 && premadeOptions}</div>;
 }
