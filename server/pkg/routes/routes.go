@@ -7,4 +7,5 @@ import (
 
 func SetupRoutes(router *gin.Engine)  {
 	router.GET("/api/premades", handlers.SendPremade)
+	router.POST("/api/listchoice", handlers.ReceiveChoice)
 }
