@@ -7,10 +7,13 @@ export default function App() {
   useEffect(() => {
     const fetchPremades = async () => {
       const data = await getPremades();
-      if (data) setPremadeLists(data);
+      if (data) setPremadeLists(data.premades);
     };
     fetchPremades();
   }, []);
-  console.log(premadeLists);
-  return <div>App</div>;
+
+  const premadeOptions = premadeLists.map((item) => (
+    <button key={item}>{item}</button>
+  ));
+  return <div>{premadeLists.length > 0 && premadeOptions}</div>;
 }
