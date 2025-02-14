@@ -10,5 +10,5 @@ import (
 func SendPremade(c *gin.Context){
 	premadeLists := models.PremadeList()
 	
-	c.JSON(http.StatusOK, gin.H{"premade options":premadeLists})
+	c.JSON(http.StatusOK, gin.H{"premades":premadeLists})
 }
