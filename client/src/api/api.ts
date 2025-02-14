@@ -10,7 +10,7 @@ export const getPremades = async () => {
   }
 };
 
-export const sendChoice = (choice: string) => {
-  const message = JSON.stringify({ data: choice });
-  axios.post("http://localhost:8080/api/listchoice", message);
+export const sendChoice = async (choice: string) => {
+  const message = JSON.stringify({ selection: choice });
+  await axios.post("http://localhost:8080/api/listchoice", message);
 };
