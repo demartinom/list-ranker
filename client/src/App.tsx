@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { getPremades, sendChoice } from "./api/api";
+import { battlers, getPremades, sendChoice } from "./api/api";
 
 export default function App() {
   const [premadeLists, setPremadeLists] = useState([]);
+  const [currentBattlers, setCurrentBattlers] = useState([]);
 
   useEffect(() => {
     const fetchPremades = async () => {
@@ -13,10 +14,15 @@ export default function App() {
   }, []);
 
   const premadeOptions = premadeLists.map((item: string) => (
-    <button key={item} onClick={() => sendChoice(item)}>
+    <button
+      key={item}
+      onClick={() => {
+        sendChoice(item);
+        battlers(setCurrentBattlers);
+      }}
+    >
       {item[0].toUpperCase() + item.substring(1)}
     </button>
   ));
-
   return <div>{premadeLists.length > 0 && premadeOptions}</div>;
 }

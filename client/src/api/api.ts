@@ -16,3 +16,14 @@ export const sendChoice = async (choice: string) => {
   const message = JSON.stringify({ selection: choice });
   await axios.post(`${apiPath}/listchoice`, message);
 };
+
+export const battlers = async (
+  listSetter: React.Dispatch<React.SetStateAction<never[]>>
+) => {
+  try {
+    const response = await axios.post(`${apiPath}/battlers`);
+    listSetter(response.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
