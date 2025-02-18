@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const apiPath: string = "http://localhost:8080/api/";
+
 export const getPremades = async () => {
   try {
-    const response = await axios.get("http://localhost:8080/api/premades");
+    const response = await axios.get(`${apiPath}/premades`);
     return response.data;
   } catch (error) {
     console.error("API error:, ", error);
@@ -12,5 +14,5 @@ export const getPremades = async () => {
 
 export const sendChoice = async (choice: string) => {
   const message = JSON.stringify({ selection: choice });
-  await axios.post("http://localhost:8080/api/listchoice", message);
+  await axios.post(`${apiPath}/listchoice`, message);
 };
