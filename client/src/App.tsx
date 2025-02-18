@@ -12,9 +12,9 @@ export default function App() {
     fetchPremades();
   }, []);
 
-  const premadeOptions = premadeLists.map((item) => (
+  const premadeOptions = premadeLists.map((item: string) => (
     <button key={item} onClick={() => sendChoice(item)}>
-      {item}
+      {item[0].toUpperCase() + item.substring(1)}
     </button>
   ));
 
