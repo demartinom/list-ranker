@@ -8,11 +8,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type Choice struct {
-	Selection string `json:"selection"`
-}
-
-
 func SendPremade(c *gin.Context){
 	premadeLists := models.PremadeList()
 	
@@ -20,7 +15,7 @@ func SendPremade(c *gin.Context){
 }
 
 func ReceiveChoice(c *gin.Context) {
-	var req Choice
+	var req models.Choice
 
 	// Bind JSON to struct
 	if err := c.BindJSON(&req); err != nil {
