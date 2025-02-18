@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/demartinom/list-ranker-v2/pkg/models"
@@ -22,5 +21,5 @@ func ReceiveChoice(c *gin.Context) {
 		return
 	}
 
-	fmt.Println("Received choice:", req.Selection)
+	battleList := models.ReadCSV(req.Selection)
 }
