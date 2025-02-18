@@ -9,7 +9,7 @@ import (
 )
 
 type Choice struct {
-	Selection string
+	Selection string `json:"selection"`
 }
 
 
