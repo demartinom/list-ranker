@@ -4,9 +4,9 @@ import (
 	"encoding/csv"
 	"fmt"
 	"log"
+	"math/rand"
 	"os"
 )
-
 
 func ReadCSV(fileName string) []*Item {
 	filePath := fmt.Sprintf("game-data/%s.csv", fileName)
@@ -32,4 +32,21 @@ func ReadCSV(fileName string) []*Item {
 	}
 
 	return itemsList
+}
+
+
+func ChooseBattlers(list []*Item) ([]*Item, []int) {
+	fighterOneIndex := rand.Intn(len(list))
+	fighterTwoIndex := rand.Intn(len(list))
+
+	for fighterOneIndex == fighterTwoIndex {
+		fighterTwoIndex = rand.Intn(len(list))
+	}
+
+	fighterOne := list[fighterOneIndex]
+	fighterTwo := list[fighterTwoIndex]
+
+	combatants := []*Item{fighterOne, fighterTwo}
+	indexes := []int{fighterOneIndex, fighterTwoIndex}
+	return combatants, indexes
 }
