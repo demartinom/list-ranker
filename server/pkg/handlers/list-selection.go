@@ -7,6 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+var battleList []*models.Item
+
 func SendPremade(c *gin.Context){
 	premadeLists := models.PremadeList()
 	
@@ -21,5 +23,5 @@ func ReceiveChoice(c *gin.Context) {
 		return
 	}
 
-	battleList := models.ReadCSV(req.Selection)
+	battleList= models.ReadCSV(req.Selection)
 }
