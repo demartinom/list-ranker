@@ -9,10 +9,11 @@ import (
 
 var battleList []*models.Item
 
-func SendPremade(c *gin.Context){
+func SendPremade(c *gin.Context) {
+	battleList = []*models.Item{}
+
 	premadeLists := models.PremadeList()
-	
-	c.JSON(http.StatusOK, gin.H{"premades":premadeLists})
+	c.JSON(http.StatusOK, gin.H{"premades": premadeLists})
 }
 
 func ReceiveChoice(c *gin.Context) {
@@ -23,5 +24,5 @@ func ReceiveChoice(c *gin.Context) {
 		return
 	}
 
-	battleList= models.ReadCSV(req.Selection)
+	battleList = models.ReadCSV(req.Selection)
 }

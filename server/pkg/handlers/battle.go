@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SendBattlers( c *gin.Context)  {
+func SendBattlers(c *gin.Context) {
 	fighters, _ := models.ChooseBattlers(battleList)
 
-	c.JSON(http.StatusOK, gin.H{"battlers":fighters})
+	c.JSON(http.StatusOK, gin.H{"battlers": fighters})
 }

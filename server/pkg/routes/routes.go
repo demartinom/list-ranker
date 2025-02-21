@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SetupRoutes(router *gin.Engine)  {
+func SetupRoutes(router *gin.Engine) {
 	router.GET("/api/premades", handlers.SendPremade)
 	router.POST("/api/listchoice", handlers.ReceiveChoice)
 	router.POST("/api/battlers", handlers.SendBattlers)

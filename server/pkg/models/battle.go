@@ -34,7 +34,6 @@ func ReadCSV(fileName string) []*Item {
 	return itemsList
 }
 
-
 func ChooseBattlers(list []*Item) ([]*Item, []int) {
 	fighterOneIndex := rand.Intn(len(list))
 	fighterTwoIndex := rand.Intn(len(list))
