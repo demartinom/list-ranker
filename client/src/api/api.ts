@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { Battlers } from "../App";
 const apiPath: string = "http://localhost:8080/api";
 
 export const getPremades = async () => {
@@ -17,8 +17,8 @@ export const sendChoice = async (choice: string) => {
   await axios.post(`${apiPath}/listchoice`, message);
 };
 
-export const battlers = async (
-  listSetter: React.Dispatch<React.SetStateAction<never[]>>
+export const receiveBattlers = async (
+  listSetter: React.Dispatch<React.SetStateAction<Battlers[]>>
 ) => {
   try {
     const response = await axios.post(`${apiPath}/battlers`);
