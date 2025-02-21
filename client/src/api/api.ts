@@ -22,7 +22,7 @@ export const battlers = async (
 ) => {
   try {
     const response = await axios.post(`${apiPath}/battlers`);
-    listSetter(response.data);
+    listSetter(response.data.battlers);
   } catch (error) {
     console.log(error);
   }
