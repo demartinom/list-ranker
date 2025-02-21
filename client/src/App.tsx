@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
-import { battlers, getPremades, sendChoice } from "./api/api";
+import { getPremades, receiveBattlers, sendChoice } from "./api/api";
 
+export type Battlers = {
+  Name: string;
+  Score: number;
+};
 export default function App() {
-  const [premadeLists, setPremadeLists] = useState([]);
-  const [currentBattlers, setCurrentBattlers] = useState([]);
+  const [premadeLists, setPremadeLists] = useState<string[]>([]);
+  const [currentBattlers, setCurrentBattlers] = useState<Battlers[]>([]);
 
   useEffect(() => {
     const fetchPremades = async () => {
@@ -13,16 +17,30 @@ export default function App() {
     fetchPremades();
   }, []);
 
+  // Take array of premade lists and map them out to buttons for user to select list choice
   const premadeOptions = premadeLists.map((item: string) => (
     <button
       key={item}
       onClick={() => {
         sendChoice(item);
-        battlers(setCurrentBattlers);
+        receiveBattlers(setCurrentBattlers);
       }}
     >
       {item[0].toUpperCase() + item.substring(1)}
     </button>
   ));
-  return <div>{premadeLists.length > 0 && premadeOptions}</div>;
+
+  // Take list of round battlers and display as choices
+  const battleOptions = currentBattlers.map(
+    (battler: Battlers, index: number) => (
+      <button key={index}>{battler.Name}</button>
+    )
+  );
+
+  return (
+    <div>
+      {premadeLists.length > 0 && premadeOptions}
+      {currentBattlers.length > 0 && battleOptions}
+    </div>
+  );
 }
