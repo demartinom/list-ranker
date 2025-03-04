@@ -21,8 +21,8 @@ export default function App() {
   const premadeOptions = premadeLists.map((item: string) => (
     <button
       key={item}
-      onClick={() => {
-        sendChoice(item);
+      onClick={async () => {
+        await sendChoice(item);
         receiveBattlers(setCurrentBattlers);
       }}
     >
