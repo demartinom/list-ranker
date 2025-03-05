@@ -7,7 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// * TODO: Need to figure out how to reset this on page refresh
 var battleList []*models.Item
 
 func SendPremade(c *gin.Context) {
