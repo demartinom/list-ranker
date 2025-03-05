@@ -27,3 +27,8 @@ export const receiveBattlers = async (
     console.log(error);
   }
 };
+
+export const sendBattleChoice = async (choice: string) => {
+  const message = JSON.stringify({ selection: choice });
+  await axios.post(`${apiPath}/battlerChoice`, message);
+};
