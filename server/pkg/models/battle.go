@@ -4,6 +4,8 @@ import (
 	"math/rand"
 )
 
+var BattleList = ListState{}
+
 func ChooseBattlers(list []*Item) ([]*Item, []int) {
 	fighterOneIndex := rand.Intn(len(list))
 	fighterTwoIndex := rand.Intn(len(list))

@@ -9,7 +9,7 @@ import (
 )
 
 func SendBattlers(c *gin.Context) {
-	fighters, _ := models.ChooseBattlers(battleList.BattleList)
+	fighters, _ := models.ChooseBattlers(models.BattleList.BattleList)
 
 	c.JSON(http.StatusOK, gin.H{"battlers": fighters})
 }
