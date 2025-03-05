@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { getPremades, receiveBattlers, sendChoice } from "./api/api";
+import {
+  getPremades,
+  receiveBattlers,
+  sendBattleChoice,
+  sendChoice,
+} from "./api/api";
 
 export type Battlers = {
   Name: string;
@@ -33,7 +38,14 @@ export default function App() {
   // Take list of round battlers and display as choices
   const battleOptions = currentBattlers.map(
     (battler: Battlers, index: number) => (
-      <button key={index}>{battler.Name}</button>
+      <button
+        key={index}
+        onClick={async () => {
+          await sendBattleChoice(battler.Name);
+        }}
+      >
+        {battler.Name}
+      </button>
     )
   );
 
