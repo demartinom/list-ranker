@@ -6,7 +6,7 @@ import (
 
 var BattleList = ListState{}
 
-func ChooseBattlers(list []*Item) ([]*Item, []int) {
+func ChooseBattlers(list []*Item) {
 	fighterOneIndex := rand.Intn(len(list))
 	fighterTwoIndex := rand.Intn(len(list))
 
@@ -19,5 +19,7 @@ func ChooseBattlers(list []*Item) ([]*Item, []int) {
 
 	combatants := []*Item{fighterOne, fighterTwo}
 	indexes := []int{fighterOneIndex, fighterTwoIndex}
-	return combatants, indexes
+
+	BattleList.SetCurrentFighters(combatants)
+	BattleList.SetCurrentIndexes(indexes)
 }
