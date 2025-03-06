@@ -42,6 +42,7 @@ export default function App() {
         key={index}
         onClick={async () => {
           await sendBattleChoice(battler.Name);
+          receiveBattlers(setCurrentBattlers);
         }}
       >
         {battler.Name}
