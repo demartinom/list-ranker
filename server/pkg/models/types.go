@@ -29,3 +29,11 @@ type Item struct {
 	Name  string
 	Score int
 }
+
+func (i *Item) Win() {
+	i.Score++
+}
+
+func (i *Item) Lose() {
+	i.Score--
+}
