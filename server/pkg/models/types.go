@@ -48,3 +48,11 @@ func (i *Item) Lose(index int) {
 	}
 
 }
+
+type Ranking struct {
+	RankingsList []string
+}
+
+func (r *Ranking) AddItem(battler string) {
+	r.RankingsList = append(r.RankingsList, battler)
+}
