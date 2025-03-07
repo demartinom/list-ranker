@@ -11,9 +11,12 @@ import (
 var battleList = &models.BattleList
 
 func SendBattlers(c *gin.Context) {
-	models.BeginRound(models.BattleList.BattleList)
-
-	c.JSON(http.StatusOK, gin.H{"battlers": battleList.CurrentCombatants})
+	round := models.BeginRound(models.BattleList.BattleList)
+	if round != nil {
+		c.JSON(http.StatusOK, gin.H{"results": models.FinalRanking})
+	} else {
+		c.JSON(http.StatusOK, gin.H{"battlers": battleList.CurrentCombatants})
+	}
 }
 
 func ReceiveBattlerChoice(c *gin.Context) {
