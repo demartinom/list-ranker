@@ -5,6 +5,7 @@ import (
 )
 
 var BattleList = ListState{}
+var FinalRanking = Ranking{}
 
 func ChooseBattlers(list []*Item) {
 	fighterOneIndex := rand.Intn(len(list))
