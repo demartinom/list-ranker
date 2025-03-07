@@ -1,7 +1,6 @@
 package models
 
 import (
-	"fmt"
 	"math/rand"
 )
 
@@ -29,11 +28,9 @@ func BattleResult(list []*Item, battlers []*Item, indexes []int, winner string) 
 	if winner == battlers[0].Name {
 		battlers[0].Win()
 		battlers[1].Lose(indexes[1])
-		fmt.Println(battlers[0], battlers[1])
 
 	} else {
 		battlers[1].Win()
 		battlers[0].Lose(indexes[0])
-		fmt.Println(battlers[0], battlers[1])
 	}
 }
