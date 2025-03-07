@@ -11,7 +11,7 @@ import (
 var battleList = &models.BattleList
 
 func SendBattlers(c *gin.Context) {
-	models.ChooseBattlers(models.BattleList.BattleList)
+	models.BeginRound(models.BattleList.BattleList)
 
 	c.JSON(http.StatusOK, gin.H{"battlers": battleList.CurrentCombatants})
 }

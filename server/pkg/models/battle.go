@@ -7,7 +7,7 @@ import (
 var BattleList = ListState{}
 var FinalRanking = Ranking{}
 
-func ChooseBattlers(list []*Item) {
+func BeginRound(list []*Item) {
 	fighterOneIndex := rand.Intn(len(list))
 	fighterTwoIndex := rand.Intn(len(list))
 
