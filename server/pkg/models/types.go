@@ -20,6 +20,10 @@ func (l *ListState) SetCurrentIndexes(indexes []int) {
 	l.CurrentIndexes = indexes
 }
 
+func (l *ListState) RemoveLoser(i *Item, index int) {
+	l.BattleList = append(l.BattleList[:index], l.BattleList[index+1:]...)
+}
+
 // Struct for receiving messages from the frontend
 type Choice struct {
 	Selection string `json:"selection"`
