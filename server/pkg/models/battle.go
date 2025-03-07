@@ -7,7 +7,12 @@ import (
 var BattleList = ListState{}
 var FinalRanking = Ranking{}
 
-func BeginRound(list []*Item) {
+func BeginRound(list []*Item) []string {
+	if len(list) == 1 {
+		final := endGame()
+		return final
+	}
+
 	fighterOneIndex := rand.Intn(len(list))
 	fighterTwoIndex := rand.Intn(len(list))
 
@@ -23,6 +28,8 @@ func BeginRound(list []*Item) {
 
 	BattleList.SetCurrentFighters(combatants)
 	BattleList.SetCurrentIndexes(indexes)
+
+	return nil
 }
 
 func BattleResult(list []*Item, battlers []*Item, indexes []int, winner string) {
@@ -34,4 +41,8 @@ func BattleResult(list []*Item, battlers []*Item, indexes []int, winner string) 
 		battlers[1].Win()
 		battlers[0].Lose(indexes[0])
 	}
+}
+
+func endGame() []string {
+	return FinalRanking.RankingsList
 }
