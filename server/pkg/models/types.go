@@ -38,6 +38,13 @@ func (i *Item) Win() {
 	i.Score++
 }
 
-func (i *Item) Lose() {
+func (i *Item) Lose(index int) {
 	i.Score--
+	if len(BattleList.BattleList) == 2 {
+		BattleList.RemoveLoser(i, index)
+	}
+	if i.Score <= -2 {
+		BattleList.RemoveLoser(i, index)
+	}
+
 }
