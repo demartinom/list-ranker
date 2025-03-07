@@ -42,11 +42,12 @@ func (i *Item) Lose(index int) {
 	i.Score--
 	if len(BattleList.BattleList) == 2 {
 		BattleList.RemoveLoser(i, index)
+		FinalRanking.AddItem(i.Name)
 	}
 	if i.Score <= -2 {
 		BattleList.RemoveLoser(i, index)
+		FinalRanking.AddItem(i.Name)
 	}
-
 }
 
 type Ranking struct {
