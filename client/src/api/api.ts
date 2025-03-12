@@ -22,7 +22,12 @@ export const receiveBattlers = async (
 ) => {
   try {
     const response = await axios.post(`${apiPath}/battlers`);
-    listSetter(response.data.battlers);
+    if (response.data.results) {
+      listSetter([]);
+      return;
+    } else {
+      listSetter(response.data.battlers);
+    }
   } catch (error) {
     console.log(error);
   }
