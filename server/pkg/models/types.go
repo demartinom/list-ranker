@@ -22,6 +22,7 @@ func (l *ListState) SetCurrentIndexes(indexes []int) {
 
 func (l *ListState) RemoveLoser(i *Item, index int) {
 	l.BattleList = append(l.BattleList[:index], l.BattleList[index+1:]...)
+	FinalRanking.AddItem(i.Name)
 }
 
 // Struct for receiving messages from the frontend
@@ -42,11 +43,9 @@ func (i *Item) Lose(index int) {
 	i.Score--
 	if len(BattleList.BattleList) == 2 {
 		BattleList.RemoveLoser(i, index)
-		FinalRanking.AddItem(i.Name)
 	}
 	if i.Score <= -2 {
 		BattleList.RemoveLoser(i, index)
-		FinalRanking.AddItem(i.Name)
 	}
 }
 
