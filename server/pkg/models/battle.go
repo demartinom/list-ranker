@@ -10,6 +10,7 @@ var FinalRanking = Ranking{}
 
 func BeginRound(list []*Item) []string {
 	if len(list) == 1 {
+		FinalRanking.AddItem(list[0].Name)
 		final := endGame()
 		return final
 	}
