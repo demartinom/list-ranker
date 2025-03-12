@@ -18,15 +18,17 @@ export const sendChoice = async (choice: string) => {
 };
 
 export const receiveBattlers = async (
-  listSetter: React.Dispatch<React.SetStateAction<Battlers[]>>
+  battleSetter: React.Dispatch<React.SetStateAction<Battlers[]>>,
+  rankingSetter: React.Dispatch<React.SetStateAction<string[]>>
 ) => {
   try {
     const response = await axios.post(`${apiPath}/battlers`);
     if (response.data.results) {
-      listSetter([]);
+      rankingSetter(response.data.results);
+      battleSetter([]);
       return;
     } else {
-      listSetter(response.data.battlers);
+      battleSetter(response.data.battlers);
     }
   } catch (error) {
     console.log(error);
