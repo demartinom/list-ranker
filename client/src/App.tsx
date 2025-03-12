@@ -29,7 +29,7 @@ export default function App() {
       key={item}
       onClick={async () => {
         await sendChoice(item);
-        receiveBattlers(setCurrentBattlers);
+        receiveBattlers(setCurrentBattlers, setFinalRanking);
       }}
     >
       {item[0].toUpperCase() + item.substring(1)}
@@ -43,7 +43,7 @@ export default function App() {
         key={index}
         onClick={async () => {
           await sendBattleChoice(battler.Name);
-          receiveBattlers(setCurrentBattlers);
+          receiveBattlers(setCurrentBattlers, setFinalRanking);
         }}
       >
         {battler.Name}
