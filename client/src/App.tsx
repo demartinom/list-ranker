@@ -13,6 +13,7 @@ export type Battlers = {
 export default function App() {
   const [premadeLists, setPremadeLists] = useState<string[]>([]);
   const [currentBattlers, setCurrentBattlers] = useState<Battlers[]>([]);
+  const [finalRanking, setFinalRanking] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchPremades = async () => {
@@ -50,10 +51,17 @@ export default function App() {
     )
   );
 
+  const rankingList = finalRanking.map((item: string, index: number) => (
+    <p key={index}>
+      {index + 1}: {item}
+    </p>
+  ));
+
   return (
     <div>
       {premadeLists.length > 0 && premadeOptions}
       {currentBattlers.length > 0 && battleOptions}
+      {finalRanking.length > 0 && rankingList}
     </div>
   );
 }
