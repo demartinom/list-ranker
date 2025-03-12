@@ -2,6 +2,7 @@ package models
 
 import (
 	"math/rand"
+	"slices"
 )
 
 var BattleList = ListState{}
@@ -44,5 +45,6 @@ func BattleResult(list []*Item, battlers []*Item, indexes []int, winner string) 
 }
 
 func endGame() []string {
+	slices.Reverse(FinalRanking.RankingsList)
 	return FinalRanking.RankingsList
 }
