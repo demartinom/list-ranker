@@ -19,6 +19,8 @@ func ReceiveChoice(c *gin.Context) {
 	if err := c.BindJSON(&req); err != nil {
 		return
 	}
+	// Result final ranking to ensure no items left over from previous game
+	models.FinalRanking = models.Ranking{}
 
 	models.BattleList.SetList(models.ReadCSV(req.Selection))
 }
