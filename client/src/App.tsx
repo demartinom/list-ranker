@@ -26,15 +26,14 @@ export default function App() {
 
   // Take array of premade lists and map them out to buttons for user to select list choice
   const premadeOptions = premadeLists.map((item: string) => (
-    <button
+    <ListChoice
       key={item}
-      onClick={async () => {
+      listSelection={async () => {
         await sendChoice(item);
         receiveBattlers(setCurrentBattlers, setFinalRanking);
       }}
-    >
-      {item[0].toUpperCase() + item.substring(1)}
-    </button>
+      listName={item[0].toUpperCase() + item.substring(1)}
+    />
   ));
 
   // Take list of round battlers and display as choices
