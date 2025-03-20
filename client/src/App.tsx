@@ -37,18 +37,16 @@ export default function App() {
   ));
 
   // Take list of round battlers and display as choices
-  const battleOptions = currentBattlers.map(
-    (battler: Battlers, ) => (
-      <Battler 
+  const battleOptions = currentBattlers.map((battler: Battlers) => (
+    <Battler
       key={battler.Name}
-      name={battler.Name}
+      battlerName={battler.Name}
       winner={async () => {
         await sendBattleChoice(battler.Name);
         receiveBattlers(setCurrentBattlers, setFinalRanking);
       }}
     />
-    )
-  );
+  ));
 
   const rankingList = finalRanking.map((item: string, index: number) => (
     <p key={index}>
