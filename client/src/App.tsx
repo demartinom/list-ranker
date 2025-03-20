@@ -5,6 +5,7 @@ import {
   sendBattleChoice,
   sendChoice,
 } from "./api/api";
+import Battler from "./components/Battler";
 
 export type Battlers = {
   Name: string;
@@ -38,16 +39,15 @@ export default function App() {
 
   // Take list of round battlers and display as choices
   const battleOptions = currentBattlers.map(
-    (battler: Battlers, index: number) => (
-      <button
-        key={index}
-        onClick={async () => {
-          await sendBattleChoice(battler.Name);
-          receiveBattlers(setCurrentBattlers, setFinalRanking);
-        }}
-      >
-        {battler.Name}
-      </button>
+    (battler: Battlers, ) => (
+      <Battler 
+      key={battler.Name}
+      name={battler.Name}
+      winner={async () => {
+        await sendBattleChoice(battler.Name);
+        receiveBattlers(setCurrentBattlers, setFinalRanking);
+      }}
+    />
     )
   );
 
