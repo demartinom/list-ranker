@@ -6,6 +6,7 @@ import {
   sendChoice,
 } from "./api/api";
 import Battler from "./components/Battler";
+import ListChoice from "./components/ListChoice";
 
 export type Battlers = {
   Name: string;
