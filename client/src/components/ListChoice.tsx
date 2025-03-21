@@ -10,7 +10,11 @@ export default function ListChoice({
   listSelection,
 }: ListProps) {
   return (
-    <Button variant={"outline"} onClick={listSelection}>
+    <Button
+      variant={"ghost"}
+      className="m-2.5 h-22 w-fit min-w-40 cursor-pointer bg-sky-300 text-2xl hover:bg-sky-500"
+      onClick={listSelection}
+    >
       {listName}
     </Button>
   );
