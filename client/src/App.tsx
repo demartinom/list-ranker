@@ -9,10 +9,12 @@ import Battler from "./components/Battler";
 import ListChoice from "./components/ListChoice";
 import { Separator } from "./components/ui/separator";
 
+// Battler type for round battlers
 export type Battlers = {
   Name: string;
   Score: number;
 };
+
 export default function App() {
   const [premadeLists, setPremadeLists] = useState<string[]>([]);
   const [currentBattlers, setCurrentBattlers] = useState<Battlers[]>([]);
@@ -51,6 +53,7 @@ export default function App() {
     />
   ));
 
+  // Map final rankings to list with rank number
   const rankingList = finalRanking.map((item: string, index: number) => (
     <p key={index} className="text-3xl">
       {index + 1}: {item}
