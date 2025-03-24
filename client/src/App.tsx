@@ -7,6 +7,7 @@ import {
 } from "./api/api";
 import Battler from "./components/Battler";
 import ListChoice from "./components/ListChoice";
+import { Separator } from "./components/ui/separator";
 
 export type Battlers = {
   Name: string;
@@ -58,6 +59,7 @@ export default function App() {
 
   return (
     <main className="m-auto min-h-screen w-5/6">
+        <Separator className="mt-5" style={{ height: "3px" }} />
       {premadeLists.length > 0 && (
         <div className="flex flex-col items-center gap-2 p-4 sm:gap-4">
           <h2 className="text-3xl">Choose a premade list to start battling</h2>
