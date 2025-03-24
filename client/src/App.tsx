@@ -32,6 +32,7 @@ export default function App() {
       listSelection={async () => {
         await sendChoice(item);
         receiveBattlers(setCurrentBattlers, setFinalRanking);
+        setPremadeLists([]);
       }}
       listName={item[0].toUpperCase() + item.substring(1)}
     />
