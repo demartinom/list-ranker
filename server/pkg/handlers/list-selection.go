@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/demartinom/list-ranker-v2/pkg/models"
+	"github.com/demartinom/list-ranker/pkg/models"
 	"github.com/gin-gonic/gin"
 )
 

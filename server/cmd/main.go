@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/demartinom/list-ranker-v2/pkg/routes"
+	"github.com/demartinom/list-ranker/pkg/routes"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
