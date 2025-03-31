@@ -1,20 +1,17 @@
-# Use a lightweight Go image
-FROM golang:1.21 as builder
+app = "list-ranker"
 
-# Set the working directory inside the container
-WORKDIR /app
+[build]
+  builder = "heroku/buildpacks:go"
 
-# Copy the Go source code
-COPY . .
+[env]
+  GO111MODULE = "on"
 
-# Build the Go app
-RUN go build -v -o /run-app ./cmd
+[[mounts]]
+  source = "data"
+  destination = "/app/data"
 
-# Use a minimal base image for running the app
-FROM gcr.io/distroless/base-debian11
-
-# Copy the compiled binary from the builder stage
-COPY --from=builder /run-app /run-app
-
-# Run the app
-CMD ["/run-app"]
+[[services]]
+  internal_port = 8080
+  protocol = "tcp"
+  [[services.ports]]
+    port = 80
