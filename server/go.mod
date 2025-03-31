@@ -1,8 +1,12 @@
 module github.com/demartinom/list-ranker
 
-go 1.23.1
+go 1.21.0
+
+toolchain go1.23.1
 
 require github.com/gin-gonic/gin v1.10.0
+
+require github.com/kr/text v0.2.0 // indirect
 
 require (
 	github.com/bytedance/sonic v1.12.6 // indirect

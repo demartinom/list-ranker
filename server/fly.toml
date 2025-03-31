@@ -1,17 +1,28 @@
-app = "list-ranker"
+# fly.toml app configuration file generated for server-long-wave-4769 on 2025-03-31T16:08:11-04:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'server-long-wave-4769'
+primary_region = 'ewr'
 
 [build]
-  builder = "heroku/buildpacks:go"
+  [build.args]
+    GO_VERSION = '1.20.6'
+    build-target = "cmd"
 
 [env]
-  GO111MODULE = "on"
+  PORT = '8080'
 
-[[mounts]]
-  source = "data"
-  destination = "/app/data"
-
-[[services]]
+[http_service]
   internal_port = 8080
-  protocol = "tcp"
-  [[services.ports]]
-    port = 80
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
