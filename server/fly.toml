@@ -1,18 +1,18 @@
-# fly.toml app configuration file generated for server-long-wave-4769 on 2025-03-31T16:08:11-04:00
+# fly.toml app configuration file generated for listrankerapi on 2025-04-03T11:02:20-04:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'server-long-wave-4769'
+app = 'listrankerapi'
 primary_region = 'ewr'
 
 [build]
-  [build.args]
-    GO_VERSION = '1.20.6'
-    build-target = "cmd"
 
 [env]
   PORT = '8080'
+  GODEBUG = 'netdns=go' # Forces Go to use pure Go resolver
+  FLY_RESOLVER = 'fdaa::3'
+
 
 [http_service]
   internal_port = 8080
