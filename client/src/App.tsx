@@ -19,6 +19,7 @@ export default function App() {
   const [premadeLists, setPremadeLists] = useState<string[]>([]);
   const [currentBattlers, setCurrentBattlers] = useState<Battlers[]>([]);
   const [finalRanking, setFinalRanking] = useState<string[]>([]);
+  const [listLoading, setListLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchPremades = async () => {
@@ -26,6 +27,7 @@ export default function App() {
       if (data) setPremadeLists(data.premades);
     };
     fetchPremades();
+    setListLoading(false);
   }, []);
 
   // Take array of premade lists and map them out to buttons for user to select list choice
@@ -38,6 +40,7 @@ export default function App() {
         setPremadeLists([]);
       }}
       listName={item[0].toUpperCase() + item.substring(1)}
+      loading={listLoading}
     />
   ));
 
