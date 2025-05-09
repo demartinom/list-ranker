@@ -7,7 +7,7 @@ import {
 } from "./api/api";
 import Battler from "./components/Battler";
 import ListChoice from "./components/ListChoice";
-import { Separator } from "./components/ui/separator";
+import Header from "./components/Header";
 
 // Battler type for round battlers
 export type Battlers = {
@@ -66,12 +66,7 @@ export default function App() {
 
   return (
     <main className="container mx-auto min-h-screen p-4">
-      <div className="mt-8 flex flex-col items-center text-center">
-        <h1 className="text-5xl font-extrabold text-gray-700 md:text-7xl">
-          List Ranker
-        </h1>
-        <Separator className="mt-5" style={{ height: "3px" }} />
-      </div>
+      <Header />
 
       {!gameStart && (
         <div className="mt-10 flex flex-col items-center gap-4">
