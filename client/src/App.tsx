@@ -83,7 +83,7 @@ export default function App() {
           <h2 className="text-center text-3xl text-gray-700">
             Choose Which Item You Prefer
           </h2>
-          <div className="mt-10 flex w-full flex-col place-items-center gap-10 lg:flex-row">
+          <div className="mt-10 flex flex-col place-items-center gap-10 px-5 xl:flex-row">
             {battleOptions}
           </div>
         </div>
