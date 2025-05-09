@@ -4,15 +4,17 @@ import { Skeleton } from "./ui/skeleton";
 interface ListProps {
   listName: string;
   listSelection: () => Promise<void>;
+  loading: boolean;
 }
 
 export default function ListChoice({
   listName = "list",
   listSelection,
+  loading,
 }: ListProps) {
   return (
     <>
-      {!listName ? (
+      {loading ? (
         <Skeleton className="m-2.5 h-22 w-fit min-w-50 bg-gray-200" />
       ) : (
         <Button
