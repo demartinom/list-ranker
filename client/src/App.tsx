@@ -20,14 +20,15 @@ export default function App() {
   const [currentBattlers, setCurrentBattlers] = useState<Battlers[]>([]);
   const [finalRanking, setFinalRanking] = useState<string[]>([]);
   const [listLoading, setListLoading] = useState<boolean>(true);
+  const [gameStart, setGameStart] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchPremades = async () => {
       const data = await getPremades();
       if (data) setPremadeLists(data.premades);
+      setListLoading(false);
     };
     fetchPremades();
-    setListLoading(false);
   }, []);
 
   // Take array of premade lists and map them out to buttons for user to select list choice
@@ -37,7 +38,7 @@ export default function App() {
       listSelection={async () => {
         await sendChoice(item);
         receiveBattlers(setCurrentBattlers, setFinalRanking);
-        setPremadeLists([]);
+        setGameStart(true);
       }}
       listName={item[0].toUpperCase() + item.substring(1)}
       loading={listLoading}
@@ -72,7 +73,7 @@ export default function App() {
         <Separator className="mt-5" style={{ height: "3px" }} />
       </div>
 
-      {premadeLists.length > 0 && (
+      {!gameStart && (
         <div className="mt-10 flex flex-col items-center gap-4">
           <h2 className="text-3xl font-semibold text-gray-700">
             Choose a premade list to start battling
