@@ -13,13 +13,13 @@ export default function Battler({
   return (
     <>
       {!battlerName ? (
-        <Skeleton className="h-60 w-full justify-center bg-gray-200 sm:w-2xl" />
+        <Skeleton className="min-h-[10rem] w-full min-w-[16rem] bg-gray-200 sm:w-[32rem]" />
       ) : (
         <Card
-          className="h-60 w-full cursor-pointer justify-center bg-sky-200 text-center shadow-sky-200 transition-colors duration-200 hover:bg-sky-400 sm:w-2xl"
+          className="flex min-h-[15rem] w-full min-w-[16rem] cursor-pointer items-center justify-center bg-sky-200 text-center shadow-sky-200 transition-colors duration-200 hover:bg-sky-400 sm:w-[32rem]"
           onClick={winner}
         >
-          <CardContent className="text-4xl text-sky-950">
+          <CardContent className="text-2xl text-sky-950 sm:text-4xl">
             {battlerName}
           </CardContent>
         </Card>
