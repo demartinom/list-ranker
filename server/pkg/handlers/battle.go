@@ -15,7 +15,7 @@ func SendBattlers(c *gin.Context) {
 	if round != nil {
 		c.JSON(http.StatusOK, gin.H{"results": models.FinalRanking.RankingsList})
 	} else {
-		c.JSON(http.StatusOK, gin.H{"battlers": battleList.CurrentCombatants})
+		c.JSON(http.StatusOK, gin.H{"battlers": battleList.CurrentCombatants, "itemsLeft": len(models.BattleList.BattleList)})
 	}
 }
 
