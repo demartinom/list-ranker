@@ -83,6 +83,9 @@ export default function App() {
           <h2 className="text-center text-3xl text-gray-700">
             Choose Which Item You Prefer
           </h2>
+          <h2 className="text-center text-2xl text-gray-700">
+            Items Left: {itemsLeft.toString()}
+          </h2>
           <div className="mt-10 flex flex-col place-items-center gap-10 px-5 xl:flex-row">
             {battleOptions}
           </div>
