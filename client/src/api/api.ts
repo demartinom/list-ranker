@@ -19,7 +19,8 @@ export const sendChoice = async (choice: string) => {
 
 export const receiveBattlers = async (
   battleSetter: React.Dispatch<React.SetStateAction<Battlers[]>>,
-  rankingSetter: React.Dispatch<React.SetStateAction<string[]>>
+  rankingSetter: React.Dispatch<React.SetStateAction<string[]>>,
+  itemsLeftSetter: React.Dispatch<React.SetStateAction<number>>,
 ) => {
   try {
     const response = await axios.post(`${apiPath}/battlers`);
@@ -29,6 +30,7 @@ export const receiveBattlers = async (
       return;
     } else {
       battleSetter(response.data.battlers);
+      itemsLeftSetter(response.data.itemsLeft);
     }
   } catch (error) {
     console.log(error);

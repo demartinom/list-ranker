@@ -21,6 +21,7 @@ export default function App() {
   const [finalRanking, setFinalRanking] = useState<string[]>([]);
   const [listLoading, setListLoading] = useState<boolean>(true);
   const [gameStart, setGameStart] = useState<boolean>(false);
+  const [itemsLeft, setItemsLeft] = useState<number>(0);
 
   useEffect(() => {
     const fetchPremades = async () => {
@@ -37,7 +38,7 @@ export default function App() {
       key={item}
       listSelection={async () => {
         await sendChoice(item);
-        receiveBattlers(setCurrentBattlers, setFinalRanking);
+        receiveBattlers(setCurrentBattlers, setFinalRanking, setItemsLeft);
         setGameStart(true);
       }}
       listName={item[0].toUpperCase() + item.substring(1)}
@@ -52,7 +53,7 @@ export default function App() {
       battlerName={battler.Name}
       winner={async () => {
         await sendBattleChoice(battler.Name);
-        receiveBattlers(setCurrentBattlers, setFinalRanking);
+        receiveBattlers(setCurrentBattlers, setFinalRanking, setItemsLeft);
       }}
     />
   ));
