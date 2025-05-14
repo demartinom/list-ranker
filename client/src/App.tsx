@@ -8,6 +8,7 @@ import {
 import Battler from "./components/Battler";
 import ListChoice from "./components/ListChoice";
 import Header from "./components/Header";
+import { Button } from "./components/ui/button";
 
 // Battler type for round battlers
 export type Battlers = {
@@ -89,6 +90,15 @@ export default function App() {
           <div className="mt-10 flex flex-col place-items-center gap-10 px-5 xl:flex-row">
             {battleOptions}
           </div>
+          <Button
+            onClick={() =>
+              receiveBattlers(setCurrentBattlers, setFinalRanking, setItemsLeft)
+            }
+            className="mt-5 cursor-pointer bg-sky-200 p-8 text-center text-xl text-gray-700 shadow-sky-200 transition-colors duration-200 hover:bg-sky-400"
+            variant={"ghost"}
+          >
+            Can't choose? Skip round
+          </Button>
         </div>
       )}
 
