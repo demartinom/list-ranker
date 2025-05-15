@@ -27,6 +27,7 @@ export const receiveBattlers = async (
     if (response.data.results) {
       rankingSetter(response.data.results);
       battleSetter([]);
+      itemsLeftSetter(0);
       return;
     } else {
       battleSetter(response.data.battlers);
