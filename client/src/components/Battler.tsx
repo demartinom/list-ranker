@@ -11,7 +11,7 @@ export default function Battler({
 }: BattlerProps) {
   return (
     <Card
-      className="flex min-h-[15rem] w-full min-w-[16rem] cursor-pointer items-center justify-center bg-sky-200 text-center shadow-sky-200 transition-colors duration-200 hover:bg-sky-400 sm:w-[32rem]"
+      className="flex w-full min-w-[16rem] cursor-pointer items-center justify-center bg-sky-200 text-center shadow-sky-200 transition-colors duration-200 hover:bg-sky-400 sm:w-[32rem] md:min-h-[15rem]"
       onClick={winner}
     >
       <CardContent className="text-2xl text-sky-950 sm:text-4xl">

@@ -75,7 +75,9 @@ export default function App() {
           <h2 className="text-3xl font-semibold text-gray-700">
             Choose a premade list to start battling
           </h2>
-          <ul className="flex list-none">{premadeOptions}</ul>
+          <ul className="flex list-none flex-col sm:items-center md:flex-row">
+            {premadeOptions}
+          </ul>
         </div>
       )}
 
@@ -94,7 +96,7 @@ export default function App() {
             onClick={() =>
               receiveBattlers(setCurrentBattlers, setFinalRanking, setItemsLeft)
             }
-            className="mt-5 cursor-pointer bg-sky-200 p-8 text-center text-xl text-gray-700 shadow-sky-200 transition-colors duration-200 hover:bg-sky-400"
+            className="mt-2 cursor-pointer bg-sky-200 p-8 text-center text-lg text-gray-700 shadow-sky-200 transition-colors duration-200 hover:bg-sky-400 md:text-xl lg:mt-5"
             variant={"ghost"}
           >
             Can't choose? Skip round

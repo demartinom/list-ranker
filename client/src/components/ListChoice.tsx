@@ -16,7 +16,7 @@ export default function ListChoice({
   ) : (
     <Button
       variant={"ghost"}
-      className="m-2.5 h-22 w-fit min-w-40 cursor-pointer bg-sky-300 px-10 text-2xl text-sky-950 hover:bg-sky-500"
+      className="m-2.5 h-22 w-fit min-w-[15rem] cursor-pointer bg-sky-300 px-10 text-2xl text-sky-950 hover:bg-sky-500 md:min-w-[15rem]"
       onClick={listSelection}
     >
       {listName}
