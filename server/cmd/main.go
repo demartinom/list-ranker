@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"log"
+	"os"
 	"time"
 
 	"github.com/demartinom/list-ranker/pkg/routes"
@@ -10,16 +12,34 @@ import (
 )
 
 func main() {
+	env := os.Getenv("GO_ENV")
+	if env == "" {
+		env = "development" // default
+	}
+
+	fmt.Printf("Running in %s environment\n", env)
+
 	router := gin.Default()
 
-	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"https://list-ranker-sage.vercel.app"},
-		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
-		AllowHeaders:     []string{"Content-Type", "Authorization"},
-		ExposeHeaders:    []string{"Content-Length"},
-		AllowCredentials: true,
-		MaxAge:           12 * time.Hour,
-	}))
+	if env == "production" {
+		router.Use(cors.New(cors.Config{
+			AllowOrigins:     []string{"https://list-ranker-sage.vercel.app"},
+			AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+			AllowHeaders:     []string{"Content-Type", "Authorization"},
+			ExposeHeaders:    []string{"Content-Length"},
+			AllowCredentials: true,
+			MaxAge:           12 * time.Hour,
+		}))
+	} else {
+		router.Use(cors.New(cors.Config{
+			AllowOrigins:     []string{"http://localhost:5173"},
+			AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+			AllowHeaders:     []string{"Content-Type", "Authorization"},
+			ExposeHeaders:    []string{"Content-Length"},
+			AllowCredentials: true,
+			MaxAge:           12 * time.Hour,
+		}))
+	}
 
 	routes.SetupRoutes(router)
 

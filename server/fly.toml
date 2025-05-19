@@ -12,6 +12,7 @@ primary_region = 'ewr'
   PORT = '8080'
   GODEBUG = 'netdns=go' # Forces Go to use pure Go resolver
   FLY_RESOLVER = 'fdaa::3'
+  GO_ENV = "production"
 
 
 [http_service]

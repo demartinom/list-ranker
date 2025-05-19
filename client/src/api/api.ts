@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Battlers } from "../App";
-const apiPath: string = "https://listrankerapi.fly.dev/api";
+const apiPath: string = import.meta.env.VITE_API_URL;
 
 export const getPremades = async () => {
   try {
