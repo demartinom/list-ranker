@@ -34,18 +34,24 @@ export default function App() {
   }, []);
 
   // Take array of premade lists and map them out to buttons for user to select list choice
-  const premadeOptions = premadeLists.map((item: string) => (
-    <ListChoice
-      key={item}
-      listSelection={async () => {
-        await sendChoice(item);
-        receiveBattlers(setCurrentBattlers, setFinalRanking, setItemsLeft);
-        setGameStart(true);
-      }}
-      listName={item[0].toUpperCase() + item.substring(1)}
-      loading={listLoading}
-    />
-  ));
+  const premadeOptions = listLoading
+    ? Array.from({ length: 2 }).map((_, i) => (
+        <Skeleton
+          key={i}
+          className="m-2.5 h-24 w-fit min-w-[15rem] bg-gray-200 px-10"
+        />
+      ))
+    : premadeLists.map((item: string) => (
+        <ListChoice
+          key={item}
+          listSelection={async () => {
+            await sendChoice(item);
+            receiveBattlers(setCurrentBattlers, setFinalRanking, setItemsLeft);
+            setGameStart(true);
+          }}
+          listName={item[0].toUpperCase() + item.substring(1)}
+        />
+      ));
 
   // Take list of round battlers and display as choices
   const battleOptions = currentBattlers.map((battler: Battlers) => (
