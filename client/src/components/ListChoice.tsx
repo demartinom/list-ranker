@@ -8,9 +8,10 @@ export default function ListChoice({
   listName = "list",
   listSelection,
 }: ListProps) {
+  return (
     <Button
       variant={"ghost"}
-      className="m-2.5 h-22 w-fit min-w-[15rem] cursor-pointer bg-sky-300 px-10 text-2xl text-sky-950 hover:bg-sky-500 md:min-w-[15rem]"
+      className="m-2.5 h-24 w-fit min-w-[15rem] cursor-pointer bg-sky-300 px-10 text-2xl text-sky-950 hover:bg-sky-500"
       onClick={listSelection}
     >
       {listName}

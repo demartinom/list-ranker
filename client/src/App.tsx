@@ -9,6 +9,7 @@ import Battler from "./components/Battler";
 import ListChoice from "./components/ListChoice";
 import Header from "./components/Header";
 import { Button } from "./components/ui/button";
+import { Skeleton } from "./components/ui/skeleton";
 
 // Battler type for round battlers
 export type Battlers = {
@@ -78,7 +79,7 @@ export default function App() {
 
       {!gameStart && (
         <div className="mt-10 flex flex-col items-center gap-4">
-          <h2 className="text-3xl font-semibold text-gray-700">
+          <h2 className="text-center text-xl font-semibold text-gray-700 md:text-3xl">
             Choose a premade list to start battling
           </h2>
           <ul className="flex list-none flex-col sm:items-center md:flex-row">
