@@ -16,6 +16,11 @@ type Ranking struct {
 	RankingsList []string
 }
 
+type PreviousBattlers struct {
+	Battler1 *Item
+	Battler2 *Item
+}
+
 // Sets the list for the current game to the user selection
 func (l *ListState) SetList(list []*Item) {
 	l.BattleList = list
