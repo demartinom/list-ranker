@@ -7,29 +7,41 @@ import (
 
 var BattleList = ListState{}
 var FinalRanking = Ranking{}
+var PreviousRound = PreviousBattlers{}
 
 func BeginRound(list []*Item) []string {
 	if len(list) == 1 {
 		FinalRanking.AddItem(list[0].Name)
-		final := endGame()
-		return final
+		return endGame()
 	}
 
-	fighterOneIndex := rand.Intn(len(list))
-	fighterTwoIndex := rand.Intn(len(list))
+	var fighterOneIndex, fighterTwoIndex int
+	var fighterOne, fighterTwo *Item
 
-	for fighterOneIndex == fighterTwoIndex {
+	for {
+		fighterOneIndex = rand.Intn(len(list))
 		fighterTwoIndex = rand.Intn(len(list))
+
+		if fighterOneIndex == fighterTwoIndex {
+			continue
+		}
+
+		fighterOne = list[fighterOneIndex]
+		fighterTwo = list[fighterTwoIndex]
+
+		if PreviousRound.Battler1 != nil && PreviousRound.Battler2 != nil {
+			if fighterOne == PreviousRound.Battler1 || fighterTwo == PreviousRound.Battler2 {
+				continue
+			}
+		}
+
+		break
 	}
 
-	fighterOne := list[fighterOneIndex]
-	fighterTwo := list[fighterTwoIndex]
+	PreviousRound = PreviousBattlers{Battler1: fighterOne, Battler2: fighterTwo}
 
-	combatants := []*Item{fighterOne, fighterTwo}
-	indexes := []int{fighterOneIndex, fighterTwoIndex}
-
-	BattleList.SetCurrentFighters(combatants)
-	BattleList.SetCurrentIndexes(indexes)
+	BattleList.SetCurrentFighters([]*Item{fighterOne, fighterTwo})
+	BattleList.SetCurrentIndexes([]int{fighterOneIndex, fighterTwoIndex})
 
 	return nil
 }
