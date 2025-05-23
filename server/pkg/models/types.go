@@ -7,6 +7,15 @@ type ListState struct {
 	CurrentIndexes    []int
 }
 
+type Item struct {
+	Name  string
+	Score int
+}
+
+type Ranking struct {
+	RankingsList []string
+}
+
 // Sets the list for the current game to the user selection
 func (l *ListState) SetList(list []*Item) {
 	l.BattleList = list
@@ -30,11 +39,6 @@ type Choice struct {
 	Selection string `json:"selection"`
 }
 
-type Item struct {
-	Name  string
-	Score int
-}
-
 func (i *Item) Win() {
 	i.Score++
 }
@@ -47,10 +51,6 @@ func (i *Item) Lose(index int) {
 	if i.Score <= -2 {
 		BattleList.RemoveLoser(i, index)
 	}
-}
-
-type Ranking struct {
-	RankingsList []string
 }
 
 func (r *Ranking) AddItem(battler string) {
