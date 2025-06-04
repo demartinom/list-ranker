@@ -10,6 +10,7 @@ import ListChoice from "./components/ListChoice";
 import Header from "./components/Header";
 import { Button } from "./components/ui/button";
 import { Skeleton } from "./components/ui/skeleton";
+import { ThemeProvider } from "./components/theme-provider";
 
 // Battler type for round battlers
 export type Battlers = {
@@ -74,53 +75,59 @@ export default function App() {
   ));
 
   return (
-    <main className="container mx-auto min-h-screen p-4">
-      <Header />
+    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+      <main className="container mx-auto min-h-screen p-4">
+        <Header />
 
-      {!gameStart && (
-        <div className="mt-10 flex flex-col items-center gap-4">
-          <h2 className="text-center text-xl font-semibold text-gray-700 md:text-3xl">
-            Choose a premade list to start battling
-          </h2>
-          <ul className="flex list-none flex-col sm:items-center md:flex-row">
-            {premadeOptions}
-          </ul>
-        </div>
-      )}
-
-      {currentBattlers.length > 0 && (
-        <div className="mt-6 flex flex-col items-center gap-4">
-          <h2 className="text-center text-3xl text-gray-700">
-            Choose Which Item You Prefer
-          </h2>
-          <h2 className="text-center text-2xl text-gray-700">
-            Items Left: {itemsLeft.toString()}
-          </h2>
-          <div className="mt-10 flex flex-col place-items-center gap-10 px-5 xl:flex-row">
-            {battleOptions}
+        {!gameStart && (
+          <div className="mt-10 flex flex-col items-center gap-4">
+            <h2 className="text-center text-xl font-semibold text-gray-700 md:text-3xl">
+              Choose a premade list to start battling
+            </h2>
+            <ul className="flex list-none flex-col sm:items-center md:flex-row">
+              {premadeOptions}
+            </ul>
           </div>
-          <Button
-            onClick={() =>
-              receiveBattlers(setCurrentBattlers, setFinalRanking, setItemsLeft)
-            }
-            className="mt-2 cursor-pointer bg-sky-200 p-8 text-center text-lg text-gray-700 shadow-sky-200 transition-colors duration-200 hover:bg-sky-400 md:text-xl lg:mt-5"
-            variant={"ghost"}
-          >
-            Can't choose? Skip round
-          </Button>
-        </div>
-      )}
+        )}
 
-      {finalRanking.length > 0 && (
-        <div className="mt-6 flex flex-col items-center">
-          <h2 className="text-4xl font-bold text-gray-900 md:text-5xl">
-            Final Results
-          </h2>
-          <div className="mt-3 flex flex-col gap-3 text-center md:mt-6">
-            {finalRanking.length > 0 && rankingList}
+        {currentBattlers.length > 0 && (
+          <div className="mt-6 flex flex-col items-center gap-4">
+            <h2 className="text-center text-3xl text-gray-700">
+              Choose Which Item You Prefer
+            </h2>
+            <h2 className="text-center text-2xl text-gray-700">
+              Items Left: {itemsLeft.toString()}
+            </h2>
+            <div className="mt-10 flex flex-col place-items-center gap-10 px-5 xl:flex-row">
+              {battleOptions}
+            </div>
+            <Button
+              onClick={() =>
+                receiveBattlers(
+                  setCurrentBattlers,
+                  setFinalRanking,
+                  setItemsLeft,
+                )
+              }
+              className="mt-2 cursor-pointer bg-sky-200 p-8 text-center text-lg text-gray-700 shadow-sky-200 transition-colors duration-200 hover:bg-sky-400 md:text-xl lg:mt-5"
+              variant={"ghost"}
+            >
+              Can't choose? Skip round
+            </Button>
           </div>
-        </div>
-      )}
-    </main>
+        )}
+
+        {finalRanking.length > 0 && (
+          <div className="mt-6 flex flex-col items-center">
+            <h2 className="text-4xl font-bold text-gray-900 md:text-5xl">
+              Final Results
+            </h2>
+            <div className="mt-3 flex flex-col gap-3 text-center md:mt-6">
+              {finalRanking.length > 0 && rankingList}
+            </div>
+          </div>
+        )}
+      </main>
+    </ThemeProvider>
   );
 }
