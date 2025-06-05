@@ -124,3 +124,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+.choice-button {
+  @apply bg-sky-300 text-sky-950 hover:bg-sky-500;
+  @apply dark:bg-sky-950 dark:text-sky-300 dark:hover:bg-sky-700;
+}
