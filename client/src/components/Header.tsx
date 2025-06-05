@@ -7,12 +7,12 @@ export default function Header() {
   return (
     <>
       <div className="relative mt-8 flex items-center justify-center text-center">
-        <h1 className="text-5xl font-extrabold text-gray-700 md:text-7xl">
+        <h1 className="text-my-color text-5xl font-extrabold md:text-7xl">
           List Ranker
         </h1>
         <Popover>
           <PopoverTrigger>
-            <HelpIcon />
+            <HelpIcon classname="text-my-color" />
           </PopoverTrigger>
           <PopoverContent className="w-2xl">
             A fun and simple game to help you rank your favorite things. <br />

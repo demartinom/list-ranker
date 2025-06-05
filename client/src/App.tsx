@@ -80,7 +80,7 @@ export default function App() {
         <Header />
         {!gameStart && (
           <div className="mt-10 flex flex-col items-center gap-4">
-            <h2 className="text-center text-xl font-semibold text-gray-700 md:text-3xl">
+            <h2 className="text-my-color text-center text-xl font-semibold md:text-3xl">
               Choose a premade list to start battling
             </h2>
             <ul className="flex list-none flex-col sm:items-center md:flex-row">
@@ -91,10 +91,10 @@ export default function App() {
 
         {currentBattlers.length > 0 && (
           <div className="mt-6 flex flex-col items-center gap-4">
-            <h2 className="text-center text-3xl text-gray-700">
+            <h2 className="text-my-color text-center text-3xl">
               Choose Which Item You Prefer
             </h2>
-            <h2 className="text-center text-2xl text-gray-700">
+            <h2 className="text-my-color text-center text-2xl">
               Items Left: {itemsLeft.toString()}
             </h2>
             <div className="mt-10 flex flex-col place-items-center gap-10 px-5 xl:flex-row">
@@ -108,7 +108,7 @@ export default function App() {
                   setItemsLeft,
                 )
               }
-              className="mt-2 cursor-pointer bg-sky-200 p-8 text-center text-lg text-gray-700 shadow-sky-200 transition-colors duration-200 hover:bg-sky-400 md:text-xl lg:mt-5"
+              className="choice-button mt-2 cursor-pointer p-8 text-center text-lg shadow-sky-200 transition-colors duration-200 md:text-xl lg:mt-5"
               variant={"ghost"}
             >
               Can't choose? Skip round
@@ -118,10 +118,10 @@ export default function App() {
 
         {finalRanking.length > 0 && (
           <div className="mt-6 flex flex-col items-center">
-            <h2 className="text-4xl font-bold text-gray-900 md:text-5xl">
+            <h2 className="text-my-color text-4xl font-bold md:text-5xl">
               Final Results
             </h2>
-            <div className="mt-3 flex flex-col gap-3 text-center md:mt-6">
+            <div className="text-my-color mt-3 flex flex-col gap-3 text-center md:mt-6">
               {finalRanking.length > 0 && rankingList}
             </div>
           </div>

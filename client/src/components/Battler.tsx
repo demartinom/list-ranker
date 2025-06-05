@@ -11,12 +11,10 @@ export default function Battler({
 }: BattlerProps) {
   return (
     <Card
-      className="flex w-full min-w-[16rem] cursor-pointer items-center justify-center bg-sky-200 text-center shadow-sky-200 transition-colors duration-200 hover:bg-sky-400 sm:w-[32rem] md:min-h-[15rem]"
+      className="choice-button light:shadow-sky-200 flex w-full min-w-[16rem] cursor-pointer items-center justify-center text-center transition-colors duration-200 sm:w-[32rem] md:min-h-[15rem]"
       onClick={winner}
     >
-      <CardContent className="text-2xl text-sky-950 sm:text-4xl">
-        {battlerName}
-      </CardContent>
+      <CardContent className="text-2xl sm:text-4xl">{battlerName}</CardContent>
     </Card>
   );
 }
