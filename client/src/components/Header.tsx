@@ -3,13 +3,17 @@ import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
 import HelpIcon from "@/assets/HelpIcon";
 import ModeToggle from "./ModeToggle";
 
+const homePath: string = import.meta.env.VITE_HOME_SCREEN;
+
 export default function Header() {
   return (
     <>
       <div className="relative mt-8 flex items-center justify-center text-center">
-        <h1 className="text-my-color text-5xl font-extrabold md:text-7xl">
-          List Ranker
-        </h1>
+        <a href={homePath}>
+          <h1 className="text-my-color text-5xl font-extrabold md:text-7xl">
+            List Ranker
+          </h1>
+        </a>
         <Popover>
           <PopoverTrigger>
             <HelpIcon classname="text-my-color" />
