@@ -53,7 +53,7 @@ func ReadCSV(fileName string) []*Item {
 	var itemsList []*Item
 
 	for _, itemInput := range listItems {
-		itemsList = append(itemsList, &Item{Name: itemInput[0], Score: 0})
+		itemsList = append(itemsList, &Item{Name: itemInput[0], Score: 0, Rounds: 0})
 	}
 
 	return itemsList
