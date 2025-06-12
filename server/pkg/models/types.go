@@ -5,6 +5,8 @@ type ListState struct {
 	BattleList        []*Item
 	CurrentCombatants []*Item
 	CurrentIndexes    []int
+	RoundsThreshold   int
+	ScoreThreshold    int
 }
 
 type Item struct {
