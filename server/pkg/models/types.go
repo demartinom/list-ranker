@@ -1,7 +1,7 @@
 package models
 
 // Create global state for list selected for battle
-type ListState struct {
+type BattleState struct {
 	BattleList        []*Item
 	CurrentCombatants []*Item
 	CurrentIndexes    []int
@@ -24,19 +24,19 @@ type PreviousBattlers struct {
 }
 
 // Sets the list for the current game to the user selection
-func (l *ListState) SetList(list []*Item) {
+func (l *BattleState) SetList(list []*Item) {
 	l.BattleList = list
 }
 
-func (l *ListState) SetCurrentFighters(fighters []*Item) {
+func (l *BattleState) SetCurrentFighters(fighters []*Item) {
 	l.CurrentCombatants = fighters
 }
 
-func (l *ListState) SetCurrentIndexes(indexes []int) {
+func (l *BattleState) SetCurrentIndexes(indexes []int) {
 	l.CurrentIndexes = indexes
 }
 
-func (l *ListState) RemoveLoser(i *Item, index int) {
+func (l *BattleState) RemoveLoser(i *Item, index int) {
 	l.BattleList = append(l.BattleList[:index], l.BattleList[index+1:]...)
 	FinalRanking.AddItem(i.Name)
 }

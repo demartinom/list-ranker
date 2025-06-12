@@ -5,7 +5,7 @@ import (
 	"slices"
 )
 
-var BattleList = ListState{}
+var BattleList = BattleState{}
 var FinalRanking = Ranking{}
 var PreviousRound = PreviousBattlers{}
 
