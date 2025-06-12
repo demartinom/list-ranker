@@ -1,5 +1,7 @@
 package models
 
+import "math"
+
 // Create global state for list selected for battle
 type BattleState struct {
 	BattleList        []*Item
@@ -27,6 +29,10 @@ type PreviousBattlers struct {
 // Sets the list for the current game to the user selection
 func (l *BattleState) SetGame(list []*Item) {
 	l.BattleList = list
+	listLength := len(list)
+
+	l.RoundsThreshold = int(math.Floor(math.Log2(float64(listLength))) + 1)
+	l.ScoreThreshold = -1 * int(math.Max(2, math.Floor(float64(listLength)/20)))
 }
 
 func (l *BattleState) SetCurrentFighters(fighters []*Item) {
