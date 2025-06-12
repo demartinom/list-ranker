@@ -10,8 +10,9 @@ type BattleState struct {
 }
 
 type Item struct {
-	Name  string
-	Score int
+	Name   string
+	Score  int
+	Rounds int
 }
 
 type Ranking struct {
