@@ -22,5 +22,5 @@ func ReceiveChoice(c *gin.Context) {
 	// Result final ranking to ensure no items left over from previous game
 	models.FinalRanking = models.Ranking{}
 
-	models.BattleList.SetList(models.ReadCSV(req.Selection))
+	models.BattleList.SetGame(models.ReadCSV(req.Selection))
 }

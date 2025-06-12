@@ -25,7 +25,7 @@ type PreviousBattlers struct {
 }
 
 // Sets the list for the current game to the user selection
-func (l *BattleState) SetList(list []*Item) {
+func (l *BattleState) SetGame(list []*Item) {
 	l.BattleList = list
 }
 
