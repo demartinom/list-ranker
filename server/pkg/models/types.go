@@ -1,6 +1,9 @@
 package models
 
-import "math"
+import (
+	"math"
+	"slices"
+)
 
 // Create global state for list selected for battle
 type BattleState struct {
@@ -44,7 +47,7 @@ func (l *BattleState) SetCurrentIndexes(indexes []int) {
 }
 
 func (l *BattleState) RemoveLoser(i *Item, index int) {
-	l.BattleList = append(l.BattleList[:index], l.BattleList[index+1:]...)
+	l.BattleList = slices.Delete(l.BattleList, index, index+1)
 	FinalRanking.AddItem(i.Name)
 }
 
