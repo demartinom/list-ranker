@@ -15,8 +15,10 @@ func BeginRound(list []*Item) []string {
 		return endGame()
 	}
 
-	var fighterOneIndex, fighterTwoIndex int
-	var fighterOne, fighterTwo *Item
+	var (
+		fighterOneIndex, fighterTwoIndex int
+		fighterOne, fighterTwo           *Item
+	)
 
 	for {
 		fighterOneIndex = rand.Intn(len(list))
