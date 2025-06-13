@@ -1,6 +1,7 @@
 package models
 
 import (
+	"math"
 	"math/rand"
 	"slices"
 )
@@ -35,6 +36,10 @@ func BeginRound(list []*Item) []string {
 			if fighterOne == PreviousRound.Battler1 || fighterTwo == PreviousRound.Battler2 {
 				continue
 			}
+		}
+
+		if len(BattleList.BattleList) > 5 && math.Abs(float64(fighterOne.Rounds)-float64(fighterTwo.Rounds)) > 2 {
+			continue
 		}
 
 		break
