@@ -58,14 +58,22 @@ type Choice struct {
 
 func (i *Item) Win() {
 	i.Score++
+	i.Rounds++
+}
+
+func (i *Item) CheckRemoval(b *BattleState) bool {
+	return i.Rounds >= b.RoundsThreshold && i.Score <= b.ScoreThreshold
 }
 
 func (i *Item) Lose(index int) {
 	i.Score--
+	i.Rounds++
+
 	if len(BattleList.BattleList) == 2 {
 		BattleList.RemoveLoser(i, index)
+		return
 	}
-	if i.Score <= -2 {
+	if i.CheckRemoval(&BattleList) {
 		BattleList.RemoveLoser(i, index)
 	}
 }
