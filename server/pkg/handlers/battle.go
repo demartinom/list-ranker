@@ -39,5 +39,7 @@ func ReceiveBattlerChoice(c *gin.Context) {
 	if err := c.BindJSON(&req); err != nil {
 		return
 	}
-	models.BattleResult(battleList.CurrentCombatants, battleList.CurrentCombatants, battleList.CurrentIndexes, req.Selection)
+	if !models.RoundRobinmode {
+		models.BattleResult(battleList.CurrentCombatants, battleList.CurrentCombatants, battleList.CurrentIndexes, req.Selection)
+	}
 }
