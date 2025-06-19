@@ -14,6 +14,10 @@ type BattleState struct {
 	ScoreThreshold    int
 }
 
+type RoundRobinState struct {
+	FightList   [][]*Item
+	Current     int
+	CurrentPair []string
 type Item struct {
 	Name   string
 	Score  int
