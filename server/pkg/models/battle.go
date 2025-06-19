@@ -6,10 +6,12 @@ import (
 	"slices"
 )
 
-var BattleList = BattleState{}
-var FinalRanking = Ranking{}
-var PreviousRound = PreviousBattlers{}
-var RoundRobin = RoundRobinState{}
+var (
+	BattleList    = BattleState{}
+	FinalRanking  = Ranking{}
+	PreviousRound = PreviousBattlers{}
+	RoundRobin    = RoundRobinState{}
+)
 
 func BeginRound(list []*Item) []string {
 	if len(list) == 1 {
