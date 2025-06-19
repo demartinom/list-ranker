@@ -17,9 +17,10 @@ func SendBattlers(c *gin.Context) {
 
 	if itemsLeft == 4 {
 		models.RoundRobinMode = true
+		currentRound := RoundRobin.Current
 
 		models.RoundRobinRounds(battleList.BattleList)
-		c.JSON(http.StatusOK, gin.H{"battlers": []*models.Item{RoundRobin.FightList[RoundRobin.Current][0], RoundRobin.FightList[RoundRobin.Current][1]}, "itemsLeft": itemsLeft})
+		c.JSON(http.StatusOK, gin.H{"battlers": []*models.Item{RoundRobin.FightList[currentRound][0], RoundRobin.FightList[currentRound][1]}, "itemsLeft": itemsLeft})
 
 		RoundRobin.Current++
 
