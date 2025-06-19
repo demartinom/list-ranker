@@ -17,6 +17,8 @@ func SendBattlers(c *gin.Context) {
 	itemsLeft := len(models.BattleList.BattleList)
 
 	if itemsLeft == 4 {
+		models.RoundRobinMode = true
+
 		models.RoundRobinRounds(battleList.BattleList)
 		c.JSON(http.StatusOK, gin.H{"battlers": []*models.Item{RoundRobin.FightList[RoundRobin.Current][0], RoundRobin.FightList[RoundRobin.Current][1]}, "itemsLeft": itemsLeft})
 
