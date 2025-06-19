@@ -11,7 +11,6 @@ import (
 var battleList = &models.BattleList
 var RoundRobin = &models.RoundRobin
 
-// TODO: Explicit mode flag
 func SendBattlers(c *gin.Context) {
 	round := models.BeginRound(models.BattleList.BattleList)
 	itemsLeft := len(models.BattleList.BattleList)
