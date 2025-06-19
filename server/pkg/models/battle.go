@@ -9,6 +9,7 @@ import (
 var BattleList = BattleState{}
 var FinalRanking = Ranking{}
 var PreviousRound = PreviousBattlers{}
+var RoundRobin = RoundRobinState{}
 
 func BeginRound(list []*Item) []string {
 	if len(list) == 1 {
@@ -62,6 +63,11 @@ func BattleResult(list []*Item, battlers []*Item, indexes []int, winner string) 
 		battlers[1].Win()
 		battlers[0].Lose(indexes[0])
 	}
+}
+
+func RoundRobinRounds(list []*Item) {
+	RoundRobin.Init(list)
+	RoundRobin.Current = 1
 }
 
 func endGame() []string {
