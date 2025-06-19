@@ -11,7 +11,7 @@ var (
 	FinalRanking   = Ranking{}
 	PreviousRound  = PreviousBattlers{}
 	RoundRobin     = RoundRobinState{}
-	RoundRobinmode = false
+	RoundRobinMode = false
 )
 
 func BeginRound(list []*Item) []string {
