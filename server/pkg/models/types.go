@@ -18,6 +18,7 @@ type RoundRobinState struct {
 	FightList   [][]*Item
 	Current     int
 	CurrentPair []string
+}
 type Item struct {
 	Name   string
 	Score  int
@@ -84,4 +85,19 @@ func (i *Item) Lose(index int) {
 
 func (r *Ranking) AddItem(battler string) {
 	r.RankingsList = append(r.RankingsList, battler)
+}
+
+func (rr *RoundRobinState) Init(list []*Item) {
+	var pairings [][]*Item
+
+	for i := 0; i < len(list); i++ {
+		p1 := list[i]
+		p1.Score = 0
+		for j := i + 1; j < len(list); j++ {
+			p2 := list[j]
+			p2.Score = 0
+			pairings = append(pairings, []*Item{p1, p2})
+		}
+	}
+	rr.FightList = pairings
 }
