@@ -7,10 +7,11 @@ import (
 )
 
 var (
-	BattleList    = BattleState{}
-	FinalRanking  = Ranking{}
-	PreviousRound = PreviousBattlers{}
-	RoundRobin    = RoundRobinState{}
+	BattleList     = BattleState{}
+	FinalRanking   = Ranking{}
+	PreviousRound  = PreviousBattlers{}
+	RoundRobin     = RoundRobinState{}
+	RoundRobinmode = false
 )
 
 func BeginRound(list []*Item) []string {
