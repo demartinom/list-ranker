@@ -15,8 +15,9 @@ type BattleState struct {
 }
 
 type RoundRobinState struct {
-	FightList [][]*Item
-	Current   int
+	BattleList []*Item
+	FightList  [][]*Item
+	Current    int
 }
 type Item struct {
 	Name   string
@@ -99,6 +100,7 @@ func (rr *RoundRobinState) Init(list []*Item) {
 		}
 	}
 	rr.FightList = pairings
+	rr.BattleList = list
 }
 
 func (rr *RoundRobinState) RRRound(winner string) {
