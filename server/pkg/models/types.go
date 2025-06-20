@@ -15,9 +15,8 @@ type BattleState struct {
 }
 
 type RoundRobinState struct {
-	FightList   [][]*Item
-	Current     int
-	CurrentPair []string
+	FightList [][]*Item
+	Current   int
 }
 type Item struct {
 	Name   string
