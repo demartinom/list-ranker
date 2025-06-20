@@ -100,3 +100,14 @@ func (rr *RoundRobinState) Init(list []*Item) {
 	}
 	rr.FightList = pairings
 }
+
+func (rr *RoundRobinState) RRRound(winner string) {
+	fighter1 := RoundRobin.FightList[RoundRobin.Current][0]
+	fighter2 := RoundRobin.FightList[RoundRobin.Current][0]
+
+	if winner == fighter1.Name {
+		fighter1.Score++
+	} else {
+		fighter2.Score++
+	}
+}
