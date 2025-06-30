@@ -62,7 +62,7 @@ type Choice struct {
 }
 
 func (i *Item) Win() {
-	i.Score++
+	i.Score += 2
 	i.Rounds++
 }
 
