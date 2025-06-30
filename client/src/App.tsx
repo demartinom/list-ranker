@@ -25,6 +25,7 @@ export default function App() {
   const [listLoading, setListLoading] = useState<boolean>(true);
   const [gameStart, setGameStart] = useState<boolean>(false);
   const [itemsLeft, setItemsLeft] = useState<number>(0);
+  const [roundRobin, setRoundRobin] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchPremades = async () => {
@@ -48,7 +49,12 @@ export default function App() {
           key={item}
           listSelection={async () => {
             await sendChoice(item);
-            receiveBattlers(setCurrentBattlers, setFinalRanking, setItemsLeft);
+            receiveBattlers(
+              setCurrentBattlers,
+              setFinalRanking,
+              setItemsLeft,
+              setRoundRobin,
+            );
             setGameStart(true);
           }}
           listName={item[0].toUpperCase() + item.substring(1)}
@@ -62,7 +68,12 @@ export default function App() {
       battlerName={battler.Name}
       winner={async () => {
         await sendBattleChoice(battler.Name);
-        receiveBattlers(setCurrentBattlers, setFinalRanking, setItemsLeft);
+        receiveBattlers(
+          setCurrentBattlers,
+          setFinalRanking,
+          setItemsLeft,
+          setRoundRobin,
+        );
       }}
     />
   ));
@@ -100,19 +111,16 @@ export default function App() {
             <div className="mt-10 flex flex-col place-items-center gap-10 px-5 xl:flex-row">
               {battleOptions}
             </div>
-            <Button
-              onClick={() =>
-                receiveBattlers(
-                  setCurrentBattlers,
-                  setFinalRanking,
-                  setItemsLeft,
-                )
-              }
-              className="choice-button mt-2 cursor-pointer p-8 text-center text-lg shadow-sky-200 transition-colors duration-200 md:text-xl lg:mt-5"
-              variant={"ghost"}
-            >
-              Can't choose? Skip round
-            </Button>
+            {!roundRobin && (
+              <Button
+                onClick={() =>
+                  receiveBattlers(
+                    setCurrentBattlers,
+                    setFinalRanking,
+                    setItemsLeft,
+                    setRoundRobin,
+                  )
+                }
           </div>
         )}
 
