@@ -15,7 +15,7 @@ func SendBattlers(c *gin.Context) {
 	round := models.BeginRound(models.BattleList.BattleList)
 	itemsLeft := len(models.BattleList.BattleList)
 
-	if itemsLeft == 5 {
+	if itemsLeft == 5 && !models.RoundRobinMode {
 		models.RoundRobinMode = true
 		currentRound := RoundRobin.Current
 
