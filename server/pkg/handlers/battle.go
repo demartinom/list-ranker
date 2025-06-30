@@ -17,31 +17,30 @@ func SendBattlers(c *gin.Context) {
 
 	if itemsLeft == 5 && !models.RoundRobinMode {
 		models.RoundRobinMode = true
-		currentRound := RoundRobin.Current
-
 		models.RoundRobinRounds(battleList.BattleList)
-		c.JSON(http.StatusOK, gin.H{"battlers": []*models.Item{RoundRobin.FightList[currentRound][0], RoundRobin.FightList[currentRound][1]}, "itemsLeft": itemsLeft})
-
-		RoundRobin.Current++
-
-		return
 	}
 
 	if round != nil {
 		c.JSON(http.StatusOK, gin.H{"results": models.FinalRanking.RankingsList, "itemsLeft": itemsLeft})
 		return
+	} else if models.RoundRobinMode {
+		currentRound := RoundRobin.Current
+
+		c.JSON(http.StatusOK, gin.H{"battlers": []*models.Item{RoundRobin.FightList[currentRound][0], RoundRobin.FightList[currentRound][1]}, "itemsLeft": itemsLeft, "roundRobin": true})
+		//Change above to something like Threshold - current?
 	} else {
-		c.JSON(http.StatusOK, gin.H{"battlers": battleList.CurrentCombatants, "itemsLeft": itemsLeft})
+		c.JSON(http.StatusOK, gin.H{"battlers": battleList.CurrentCombatants, "itemsLeft": itemsLeft, "roundRobin": false})
 	}
 }
 
 func ReceiveBattlerChoice(c *gin.Context) {
 	var req models.Choice
-
 	if err := c.BindJSON(&req); err != nil {
 		return
 	}
 	if !models.RoundRobinMode {
 		models.BattleResult(battleList.CurrentCombatants, battleList.CurrentCombatants, battleList.CurrentIndexes, req.Selection)
+	} else {
+		RoundRobin.RRRound(req.Selection)
 	}
 }
