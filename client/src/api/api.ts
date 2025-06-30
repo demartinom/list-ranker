@@ -21,9 +21,15 @@ export const receiveBattlers = async (
   battleSetter: React.Dispatch<React.SetStateAction<Battlers[]>>,
   rankingSetter: React.Dispatch<React.SetStateAction<string[]>>,
   itemsLeftSetter: React.Dispatch<React.SetStateAction<number>>,
+  roundRobinSetter: React.Dispatch<React.SetStateAction<boolean>>,
 ) => {
   try {
     const response = await axios.post(`${apiPath}/battlers`);
+
+    if (response.data.roundRobin) {
+      roundRobinSetter(true);
+    }
+
     if (response.data.results) {
       rankingSetter(response.data.results);
       battleSetter([]);
