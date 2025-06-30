@@ -112,4 +112,5 @@ func (rr *RoundRobinState) RRRound(winner string) {
 	} else {
 		fighter2.Score++
 	}
+	rr.Current++
 }
