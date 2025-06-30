@@ -102,9 +102,21 @@ export default function App() {
 
         {currentBattlers.length > 0 && (
           <div className="mt-6 flex flex-col items-center gap-4">
-            <h2 className="text-my-color text-center text-3xl">
-              Choose Which Item You Prefer
-            </h2>
+            {!roundRobin ? (
+              <h2 className="text-my-color text-center text-3xl">
+                Choose Which Item You Prefer
+              </h2>
+            ) : (
+              <>
+                {" "}
+                <h2 className="text-my-color text-center text-3xl">
+                  Round Robin!
+                </h2>
+                <h3 className="text-my-color text-center text-2xl">
+                  Each remaining item will battle to determine the final ranking
+                </h3>
+              </>
+            )}
             <h2 className="text-my-color text-center text-2xl">
               Items Left: {itemsLeft.toString()}
             </h2>
@@ -121,6 +133,12 @@ export default function App() {
                     setRoundRobin,
                   )
                 }
+                className="choice-button mt-2 cursor-pointer p-8 text-center text-lg shadow-sky-200 transition-colors duration-200 md:text-xl lg:mt-5"
+                variant={"ghost"}
+              >
+                Can't choose? Skip round
+              </Button>
+            )}
           </div>
         )}
 
