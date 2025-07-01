@@ -69,7 +69,7 @@ func BattleResult(list []*Item, battlers []*Item, indexes []int, winner string) 
 
 func RoundRobinRounds(list []*Item) {
 	RoundRobin.Init(list)
-	RoundRobin.Current = 1
+	RoundRobin.Current = 0
 }
 
 func endGame() []string {
