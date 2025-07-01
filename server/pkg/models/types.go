@@ -105,7 +105,7 @@ func (rr *RoundRobinState) Init(list []*Item) {
 
 func (rr *RoundRobinState) RRRound(winner string) {
 	fighter1 := RoundRobin.FightList[RoundRobin.Current][0]
-	fighter2 := RoundRobin.FightList[RoundRobin.Current][0]
+	fighter2 := RoundRobin.FightList[RoundRobin.Current][1]
 
 	if winner == fighter1.Name {
 		fighter1.Score++
