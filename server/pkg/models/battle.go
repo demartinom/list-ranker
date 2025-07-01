@@ -15,9 +15,8 @@ var (
 )
 
 func BeginRound(list []*Item) []string {
-	if len(list) == 1 {
-		FinalRanking.AddItem(list[0].Name)
-		return endGame()
+	if RoundRobinMode && RoundRobin.Current == len(RoundRobin.FightList) {
+		return endGame(RoundRobin)
 	}
 
 	var (
