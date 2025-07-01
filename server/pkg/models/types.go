@@ -41,6 +41,7 @@ func (l *BattleState) SetGame(list []*Item) {
 
 	l.RoundsThreshold = int(math.Floor(math.Log2(float64(listLength))) + 1)
 	l.ScoreThreshold = -1 * int(math.Max(2, math.Floor(float64(listLength)/20)))
+	RoundRobinMode = false
 }
 
 func (l *BattleState) SetCurrentFighters(fighters []*Item) {
