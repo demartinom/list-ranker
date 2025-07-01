@@ -4,6 +4,7 @@ import (
 	"math"
 	"math/rand"
 	"slices"
+	"sort"
 )
 
 var (
@@ -72,7 +73,13 @@ func RoundRobinRounds(list []*Item) {
 	RoundRobin.Current = 0
 }
 
-func endGame() []string {
+func endGame(rr RoundRobinState) []string {
+	sort.Slice(rr.BattleList, func(i, j int) bool {
+		return rr.BattleList[i].Score < rr.BattleList[j].Score
+	})
+	for _, v := range rr.BattleList {
+		FinalRanking.AddItem(v.Name)
+	}
 	slices.Reverse(FinalRanking.RankingsList)
 	return FinalRanking.RankingsList
 }
