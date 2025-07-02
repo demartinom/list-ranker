@@ -12,6 +12,7 @@ type BattleState struct {
 	CurrentIndexes    []int
 	RoundsThreshold   int
 	ScoreThreshold    int
+	StaleElimination  int
 }
 
 type RoundRobinState struct {
@@ -42,6 +43,7 @@ func (l *BattleState) SetGame(list []*Item) {
 	l.RoundsThreshold = int(math.Floor(math.Log2(float64(listLength))) + 1)
 	l.ScoreThreshold = -1 * int(math.Max(2, math.Floor(float64(listLength)/20)))
 	RoundRobinMode = false
+	l.StaleElimination = max(int(math.Round(math.Log2(float64(listLength)))), 1)
 }
 
 func (l *BattleState) SetCurrentFighters(fighters []*Item) {
@@ -72,7 +74,7 @@ func (i *Item) CheckRemoval(b *BattleState) bool {
 		return true
 	}
 
-	if i.Rounds > 8 && i.Score < 1 {
+	if i.Rounds > 8 && i.Score < BattleList.StaleElimination {
 		return true
 	} else if i.Rounds >= b.RoundsThreshold && i.Score <= b.ScoreThreshold {
 		return true
