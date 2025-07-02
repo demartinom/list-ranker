@@ -70,7 +70,7 @@ func (i *Item) Win() {
 }
 
 func (i *Item) CheckRemoval(b *BattleState) bool {
-	if i.Score < -5 {
+	if i.Score < -3 {
 		return true
 	}
 
