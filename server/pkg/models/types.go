@@ -68,7 +68,16 @@ func (i *Item) Win() {
 }
 
 func (i *Item) CheckRemoval(b *BattleState) bool {
-	return i.Rounds >= b.RoundsThreshold && i.Score <= b.ScoreThreshold
+	if i.Score < -5 {
+		return true
+	}
+
+	if i.Rounds > 8 && i.Score < 1 {
+		return true
+	} else if i.Rounds >= b.RoundsThreshold && i.Score <= b.ScoreThreshold {
+		return true
+	}
+	return false
 }
 
 func (i *Item) Lose(index int) {
