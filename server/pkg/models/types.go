@@ -75,10 +75,6 @@ func (i *Item) Lose(index int) {
 	i.Score--
 	i.Rounds++
 
-	if len(BattleList.BattleList) == 2 {
-		BattleList.RemoveLoser(i, index)
-		return
-	}
 	if i.CheckRemoval(&BattleList) {
 		BattleList.RemoveLoser(i, index)
 	}
