@@ -66,6 +66,8 @@ func BattleResult(list []*Item, battlers []*Item, indexes []int, winner string) 
 		battlers[1].Win()
 		battlers[0].Lose(indexes[0])
 	}
+	BattleList.TotalRounds++
+	BattleList.DynamicThreshold()
 }
 
 func RoundRobinRounds(list []*Item) {
