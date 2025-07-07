@@ -13,6 +13,7 @@ type BattleState struct {
 	RoundsThreshold   int
 	ScoreThreshold    int
 	TotalRounds       int
+	BattleListLength  int
 }
 
 type RoundRobinState struct {
@@ -43,6 +44,7 @@ func (l *BattleState) SetGame(list []*Item) {
 	l.RoundsThreshold = int(math.Floor(math.Log2(float64(listLength))) + 2)
 	l.DynamicThreshold()
 	RoundRobinMode = false
+	l.BattleListLength = listLength
 }
 
 func (l *BattleState) SetCurrentFighters(fighters []*Item) {
