@@ -17,6 +17,7 @@ var (
 
 func BeginRound(list []*Item) []string {
 	roundConstraintCutoff := int(float64(BattleList.BattleListLength) * 0.33)
+
 	if RoundRobinMode && RoundRobin.Current == len(RoundRobin.FightList) {
 		return endGame(RoundRobin)
 	}

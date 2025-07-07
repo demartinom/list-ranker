@@ -41,7 +41,7 @@ func (l *BattleState) SetGame(list []*Item) {
 	l.BattleList = list
 	listLength := len(list)
 	l.TotalRounds = 0
-	l.RoundsThreshold = int(math.Floor(math.Log2(float64(listLength))) + 2)
+	l.RoundsThreshold = int(math.Floor(math.Log2(float64(listLength))) + 1)
 	l.DynamicThreshold()
 	RoundRobinMode = false
 	l.BattleListLength = listLength
