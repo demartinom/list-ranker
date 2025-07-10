@@ -28,7 +28,8 @@ type Item struct {
 }
 
 type Ranking struct {
-	RankingsList []string
+	RankingsList   []string
+	RankingsHolder []*Item
 }
 
 type PreviousBattlers struct {
@@ -57,7 +58,7 @@ func (l *BattleState) SetCurrentIndexes(indexes []int) {
 
 func (l *BattleState) RemoveLoser(i *Item, index int) {
 	l.BattleList = slices.Delete(l.BattleList, index, index+1)
-	FinalRanking.AddItem(i.Name)
+	FinalRanking.AddHolder(i)
 }
 
 // Struct for receiving messages from the frontend
@@ -90,7 +91,11 @@ func (i *Item) Lose(index int) {
 	}
 }
 
-func (r *Ranking) AddItem(battler string) {
+func (r *Ranking) AddHolder(battler *Item) {
+	r.RankingsHolder = append(r.RankingsHolder, battler)
+}
+
+func (r *Ranking) Final(battler string) {
 	r.RankingsList = append(r.RankingsList, battler)
 }
 
