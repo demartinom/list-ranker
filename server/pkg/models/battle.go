@@ -78,12 +78,30 @@ func RoundRobinRounds(list []*Item) {
 }
 
 func endGame(rr RoundRobinState) []string {
-	sort.Slice(rr.BattleList, func(i, j int) bool {
+	FinalRanking.RankingsList = nil
+
+	sort.SliceStable(FinalRanking.RankingsHolder, func(i, j int) bool {
+		s1 := float64(FinalRanking.RankingsHolder[i].Score) / float64(FinalRanking.RankingsHolder[i].Rounds)
+		s2 := float64(FinalRanking.RankingsHolder[j].Score) / float64(FinalRanking.RankingsHolder[j].Rounds)
+		return s1 < s2
+	})
+
+	existing := make(map[string]bool)
+	for _, v := range FinalRanking.RankingsHolder {
+		FinalRanking.RankingsList = append(FinalRanking.RankingsList, v.Name)
+		existing[v.Name] = true
+	}
+
+	sort.SliceStable(rr.BattleList, func(i, j int) bool {
 		return rr.BattleList[i].Score < rr.BattleList[j].Score
 	})
+
 	for _, v := range rr.BattleList {
-		FinalRanking.AddItem(v.Name)
+		if !existing[v.Name] {
+			FinalRanking.RankingsList = append(FinalRanking.RankingsList, v.Name)
+		}
 	}
+
 	slices.Reverse(FinalRanking.RankingsList)
 	return FinalRanking.RankingsList
 }
