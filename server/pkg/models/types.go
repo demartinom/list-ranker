@@ -17,21 +17,32 @@ type BattleState struct {
 }
 
 type RoundRobinState struct {
+	// List of items that made it to the round robin
 	BattleList []*Item
-	FightList  [][]*Item
-	Current    int
+	// List of all rounds to be played.
+	// Slice of two Items.
+	FightList [][]*Item
+	// Current round robin round.
+	// Used to send correct pairing to frontend.
+	Current int
 }
 type Item struct {
-	Name   string
-	Score  int
+	Name  string
+	Score int
+	// How many rounds the item has participated in.
 	Rounds int
 }
 
 type Ranking struct {
-	RankingsList   []string
+	// Final list to be sent to frontend.
+	// Consists of names of list items.
+	RankingsList []string
+	// Holder for Items when eliminated from game.
 	RankingsHolder []*Item
 }
 
+// Stores the items that played in the previous round.
+// Ensures there isn't an exact repeat of the previous round.
 type PreviousBattlers struct {
 	Battler1 *Item
 	Battler2 *Item
@@ -56,6 +67,8 @@ func (l *BattleState) SetCurrentIndexes(indexes []int) {
 	l.CurrentIndexes = indexes
 }
 
+// If round loser has met threshold,
+// they are removed from pool of potential battlers.
 func (l *BattleState) RemoveLoser(i *Item, index int) {
 	l.BattleList = slices.Delete(l.BattleList, index, index+1)
 	FinalRanking.AddHolder(i)
@@ -66,22 +79,29 @@ type Choice struct {
 	Selection string `json:"selection"`
 }
 
+// Increases round winner's score and round tally.
 func (i *Item) Win() {
 	i.Score += 2
 	i.Rounds++
 }
 
+// Checks to see if item has met threshold for removal.
 func (i *Item) CheckRemoval(b *BattleState) bool {
+	// Removes item if it's score is low enough,
+	// Regardless of number of rounds played.
 	if i.Score < -3 {
 		return true
 	}
-
+	// Checks if item has played enough rounds
+	// and has a low enough score to be removed from the game.
 	if i.Rounds >= b.RoundsThreshold && i.Score <= b.ScoreThreshold {
 		return true
 	}
 	return false
 }
 
+// Decreases round loser's score and increased round tally.
+// Then checks if they should be removed from the pool.
 func (i *Item) Lose(index int) {
 	i.Score--
 	i.Rounds++
@@ -91,6 +111,7 @@ func (i *Item) Lose(index int) {
 	}
 }
 
+// Stores eliminated item to be properly ranked at end of game.
 func (r *Ranking) AddHolder(battler *Item) {
 	r.RankingsHolder = append(r.RankingsHolder, battler)
 }

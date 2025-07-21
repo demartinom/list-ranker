@@ -1,3 +1,4 @@
+// Package includes list of routes to communicate with the frontend
 package routes
 
 import (
