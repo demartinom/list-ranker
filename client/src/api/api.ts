@@ -45,6 +45,6 @@ export const receiveBattlers = async (
 };
 
 export const sendBattleChoice = async (choice: string) => {
-  const message = JSON.stringify({ selection: choice });
+  const message = JSON.stringify({ selection: choice, type: "premade" });
   await axios.post(`${apiPath}/battlerChoice`, message);
 };
