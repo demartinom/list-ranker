@@ -16,9 +16,9 @@ All logic for the game is written in Go, which is sent to the frontend using Gin
 
 [] More premade lists
 <br>
-[] Dark Mode
+[x] Dark Mode
 <br>
-[] Improved ranking algorithm
+[x] Improved ranking algorithm
 <br>
 [] Custom Lists
 <br>
