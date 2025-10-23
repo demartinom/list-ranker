@@ -77,6 +77,7 @@ func (l *BattleState) RemoveLoser(i *Item, index int) {
 // Struct for receiving messages from the frontend
 type Choice struct {
 	Selection string `json:"selection"`
+	Type      string `json:"type"`
 }
 
 // Increases round winner's score and round tally.
