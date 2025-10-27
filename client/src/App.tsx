@@ -28,6 +28,7 @@ export default function App() {
   const [itemsLeft, setItemsLeft] = useState<number>(0);
   const [roundRobin, setRoundRobin] = useState<boolean>(false);
   const [customList, setCustomList] = useState<string>("");
+  const [validationError, setValidationError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPremades = async () => {
@@ -37,7 +38,6 @@ export default function App() {
     };
     fetchPremades();
   }, []);
-
   // Take array of premade lists and map them out to buttons for user to select list choice
   const premadeOptions = listLoading
     ? Array.from({ length: 2 }).map((_, i) => (
@@ -151,14 +151,15 @@ export default function App() {
         />
         <button
           onClick={async () => {
-            await sendCustom(customList);
-            receiveBattlers(
-              setCurrentBattlers,
-              setFinalRanking,
-              setItemsLeft,
-              setRoundRobin,
-            );
-            setGameStart(true);
+            const success = await sendCustom(customList, setValidationError);
+            if (success) {
+              receiveBattlers(
+                setCurrentBattlers,
+                setFinalRanking,
+                setItemsLeft,
+                setRoundRobin,
+              );
+            }
           }}
         >
           Play
