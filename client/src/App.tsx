@@ -143,6 +143,11 @@ export default function App() {
           </div>
         )}
 
+        <input
+          type="text"
+          placeholder="hello"
+          onChange={(e) => setCustomList(e.target.value)}
+        />
         {finalRanking.length > 0 && (
           <div className="mt-6 flex flex-col items-center">
             <h2 className="text-my-color text-4xl font-bold md:text-5xl">
