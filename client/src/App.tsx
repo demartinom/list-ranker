@@ -26,6 +26,7 @@ export default function App() {
   const [gameStart, setGameStart] = useState<boolean>(false);
   const [itemsLeft, setItemsLeft] = useState<number>(0);
   const [roundRobin, setRoundRobin] = useState<boolean>(false);
+  const [customList, setCustomList] = useState<string>("");
 
   useEffect(() => {
     const fetchPremades = async () => {
