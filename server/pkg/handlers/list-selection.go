@@ -21,6 +21,10 @@ func ReceiveChoice(c *gin.Context) {
 	}
 	// Result final ranking to ensure no items left over from previous game
 	models.FinalRanking = models.Ranking{}
-
-	models.BattleList.SetGame(models.ReadCSV(req.Selection))
+	switch req.Type {
+	case "premade":
+		models.BattleList.SetGame(models.ReadCSV(req.Selection))
+	case "custom":
+		models.BattleList.SetGame(models.ReadCustom(req.Selection))
+	}
 }
