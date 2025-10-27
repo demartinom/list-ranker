@@ -28,7 +28,7 @@ export default function App() {
   const [itemsLeft, setItemsLeft] = useState<number>(0);
   const [roundRobin, setRoundRobin] = useState<boolean>(false);
   const [customList, setCustomList] = useState<string>("");
-  const [validationError, setValidationError] = useState<string | null>(null);
+  const [, setValidationError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPremades = async () => {
