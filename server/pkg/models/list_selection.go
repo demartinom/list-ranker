@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 func PremadeList() []string {
@@ -54,6 +55,17 @@ func ReadCSV(fileName string) []*Item {
 
 	for _, itemInput := range listItems {
 		itemsList = append(itemsList, &Item{Name: itemInput[0], Score: 0, Rounds: 0})
+	}
+
+	return itemsList
+}
+
+func ReadCustom(list string) []*Item {
+	var itemsList []*Item
+	customList := strings.Split(list, ", ")
+
+	for _, item := range customList {
+		itemsList = append(itemsList, &Item{Name: item, Score: 0, Rounds: 0})
 	}
 
 	return itemsList
