@@ -18,8 +18,7 @@ export const sendChoice = async (choice: string) => {
 };
 
 export const sendCustom = async (list: string) => {
-  const message = JSON.stringify({ selection: list, type: "premade" });
-
+  const message = JSON.stringify({ selection: list, type: "custom" });
   await axios.post(`${apiPath}/listchoice`, message);
 };
 
