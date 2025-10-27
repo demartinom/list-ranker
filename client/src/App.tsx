@@ -4,6 +4,7 @@ import {
   receiveBattlers,
   sendBattleChoice,
   sendChoice,
+  sendCustom,
 } from "./api/api";
 import Battler from "./components/Battler";
 import ListChoice from "./components/ListChoice";
@@ -148,6 +149,21 @@ export default function App() {
           placeholder="hello"
           onChange={(e) => setCustomList(e.target.value)}
         />
+        <button
+          onClick={async () => {
+            await sendCustom(customList);
+            receiveBattlers(
+              setCurrentBattlers,
+              setFinalRanking,
+              setItemsLeft,
+              setRoundRobin,
+            );
+            setGameStart(true);
+          }}
+        >
+          Play
+        </button>
+
         {finalRanking.length > 0 && (
           <div className="mt-6 flex flex-col items-center">
             <h2 className="text-my-color text-4xl font-bold md:text-5xl">
