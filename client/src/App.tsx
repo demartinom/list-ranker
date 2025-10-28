@@ -144,26 +144,33 @@ export default function App() {
           </div>
         )}
 
-        <input
-          type="text"
-          placeholder="hello"
-          onChange={(e) => setCustomList(e.target.value)}
-        />
-        <button
-          onClick={async () => {
-            const success = await sendCustom(customList, setValidationError);
-            if (success) {
-              receiveBattlers(
-                setCurrentBattlers,
-                setFinalRanking,
-                setItemsLeft,
-                setRoundRobin,
-              );
-            }
-          }}
-        >
-          Play
-        </button>
+        <div className="flex flex-col">
+          <label htmlFor="custom list">
+            Please input items for your custom list, separated by a new line
+          </label>
+          <textarea
+            name="custom list"
+            id="custom"
+            onChange={(e) => setCustomList(e.target.value)}
+            className="w-1/2 border-2 border-gray-100"
+          ></textarea>
+          <Button
+            className="w-1/2"
+            onClick={async () => {
+              const success = await sendCustom(customList, setValidationError);
+              if (success) {
+                receiveBattlers(
+                  setCurrentBattlers,
+                  setFinalRanking,
+                  setItemsLeft,
+                  setRoundRobin,
+                );
+              }
+            }}
+          >
+            Play
+          </Button>
+        </div>
 
         {finalRanking.length > 0 && (
           <div className="mt-6 flex flex-col items-center">
