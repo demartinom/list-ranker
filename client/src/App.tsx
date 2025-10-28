@@ -145,39 +145,50 @@ export default function App() {
           </div>
         )}
 
-        <div className="flex flex-col">
-          <label htmlFor="custom list">
-            Please input items for your custom list, separated by a new line
-          </label>
-          <textarea
-            name="custom list"
-            id="custom"
-            onChange={(e) => setCustomList(e.target.value)}
-            className="w-1/2 border-2 border-gray-100"
-          ></textarea>
-          <Button
-            className="w-1/2"
-            onClick={async () => {
-              const success = await sendCustom(customList, setValidationError);
-              if (success) {
-                receiveBattlers(
-                  setCurrentBattlers,
-                  setFinalRanking,
-                  setItemsLeft,
-                  setRoundRobin,
+        {!gameStart && (
+          <div className="mt-10 flex flex-col items-center">
+            <label
+              htmlFor="custom list"
+              className="text-my-color text-center text-2xl font-semibold"
+            >
+              Want to use your own custom list?
+              <br /> Input list items below using a new line to separate items.
+            </label>
+            <textarea
+              name="custom list"
+              id="custom"
+              onChange={(e) => setCustomList(e.target.value)}
+              className="w-1/2 border-2 border-gray-100"
+            ></textarea>
+            <Button
+              variant={"ghost"}
+              className="choice-button text-my-color w-1/2 py-6 text-lg"
+              onClick={async () => {
+                const success = await sendCustom(
+                  customList,
+                  setValidationError,
                 );
-              }
-            }}
-          >
-            Play
-          </Button>
-          {validationError && (
-            <Alert variant={"destructive"} className="w-1/2">
-              <AlertTitle>Oops!</AlertTitle>
-              <AlertDescription>{validationError}</AlertDescription>
-            </Alert>
-          )}
-        </div>
+                if (success) {
+                  receiveBattlers(
+                    setCurrentBattlers,
+                    setFinalRanking,
+                    setItemsLeft,
+                    setRoundRobin,
+                  );
+                  setGameStart(true);
+                }
+              }}
+            >
+              Play
+            </Button>
+            {validationError && (
+              <Alert variant={"destructive"} className="w-1/2">
+                <AlertTitle>Oops!</AlertTitle>
+                <AlertDescription>{validationError}</AlertDescription>
+              </Alert>
+            )}
+          </div>
+        )}
 
         {finalRanking.length > 0 && (
           <div className="mt-6 flex flex-col items-center">
