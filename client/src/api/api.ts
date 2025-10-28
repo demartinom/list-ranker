@@ -25,7 +25,6 @@ export const sendCustom = async (
   const validationError = listValidation(list);
 
   if (validationError) {
-    console.log(validationError);
     setError(validationError);
     return;
   }
