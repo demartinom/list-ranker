@@ -4,7 +4,6 @@ import {
   receiveBattlers,
   sendBattleChoice,
   sendChoice,
-  sendCustom,
 } from "./api/api";
 import Battler from "./components/Battler";
 import ListChoice from "./components/ListChoice";
@@ -12,7 +11,7 @@ import Header from "./components/Header";
 import { Button } from "./components/ui/button";
 import { Skeleton } from "./components/ui/skeleton";
 import { ThemeProvider } from "./components/theme-provider";
-import { Alert, AlertDescription, AlertTitle } from "./components/ui/alert";
+import CustomList from "./components/CustomList";
 
 // Battler type for round battlers
 export type Battlers = {
@@ -28,8 +27,6 @@ export default function App() {
   const [gameStart, setGameStart] = useState<boolean>(false);
   const [itemsLeft, setItemsLeft] = useState<number>(0);
   const [roundRobin, setRoundRobin] = useState<boolean>(false);
-  const [customList, setCustomList] = useState<string>("");
-  const [validationError, setValidationError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPremades = async () => {
@@ -146,48 +143,15 @@ export default function App() {
         )}
 
         {!gameStart && (
-          <div className="mt-10 flex flex-col items-center">
-            <label
-              htmlFor="custom list"
-              className="text-my-color text-center text-2xl font-semibold"
-            >
-              Want to use your own custom list?
-              <br /> Input list items below using a new line to separate items.
-            </label>
-            <textarea
-              name="custom list"
-              id="custom"
-              onChange={(e) => setCustomList(e.target.value)}
-              className="w-1/2 border-2 border-gray-100"
-            ></textarea>
-            <Button
-              variant={"ghost"}
-              className="choice-button text-my-color w-1/2 py-6 text-lg"
-              onClick={async () => {
-                const success = await sendCustom(
-                  customList,
-                  setValidationError,
-                );
-                if (success) {
-                  receiveBattlers(
-                    setCurrentBattlers,
-                    setFinalRanking,
-                    setItemsLeft,
-                    setRoundRobin,
-                  );
-                  setGameStart(true);
-                }
-              }}
-            >
-              Play
-            </Button>
-            {validationError && (
-              <Alert variant={"destructive"} className="w-1/2">
-                <AlertTitle>Oops!</AlertTitle>
-                <AlertDescription>{validationError}</AlertDescription>
-              </Alert>
-            )}
-          </div>
+          <CustomList
+            {...{
+              setCurrentBattlers,
+              setFinalRanking,
+              setItemsLeft,
+              setRoundRobin,
+              setGameStart,
+            }}
+          />
         )}
 
         {finalRanking.length > 0 && (
