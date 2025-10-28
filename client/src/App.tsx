@@ -12,6 +12,7 @@ import Header from "./components/Header";
 import { Button } from "./components/ui/button";
 import { Skeleton } from "./components/ui/skeleton";
 import { ThemeProvider } from "./components/theme-provider";
+import { Alert, AlertDescription, AlertTitle } from "./components/ui/alert";
 
 // Battler type for round battlers
 export type Battlers = {
@@ -28,7 +29,7 @@ export default function App() {
   const [itemsLeft, setItemsLeft] = useState<number>(0);
   const [roundRobin, setRoundRobin] = useState<boolean>(false);
   const [customList, setCustomList] = useState<string>("");
-  const [, setValidationError] = useState<string | null>(null);
+  const [validationError, setValidationError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPremades = async () => {
@@ -170,6 +171,12 @@ export default function App() {
           >
             Play
           </Button>
+          {validationError && (
+            <Alert variant={"destructive"} className="w-1/2">
+              <AlertTitle>Oops!</AlertTitle>
+              <AlertDescription>{validationError}</AlertDescription>
+            </Alert>
+          )}
         </div>
 
         {finalRanking.length > 0 && (
