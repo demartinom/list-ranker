@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const customListToArray = (list: string) => {
-  return list.split("\n");
+  return list.toLowerCase().split("\n");
 };
 
 export const listValidation = (list: string): string | null => {
