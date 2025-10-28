@@ -62,7 +62,7 @@ func ReadCSV(fileName string) []*Item {
 
 func ReadCustom(list string) []*Item {
 	var itemsList []*Item
-	customList := strings.Split(list, ", ")
+	customList := strings.Split(list, "\n")
 
 	for _, item := range customList {
 		itemsList = append(itemsList, &Item{Name: item, Score: 0, Rounds: 0})
