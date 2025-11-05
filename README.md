@@ -20,7 +20,7 @@ All logic for the game is written in Go, which is sent to the frontend using Gin
 <br>
 [x] Improved ranking algorithm
 <br>
-[] Custom Lists
+[x] Custom Lists
 <br>
 [] Better results display
 <br>
