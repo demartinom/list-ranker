@@ -39,7 +39,7 @@ export default function CustomList({
       ></textarea>
       <Button
         variant={"ghost"}
-        className="choice-button text-my-color w-1/2 py-6 text-lg"
+        className="choice-button text-my-color mt-2 w-1/2 py-6 text-lg"
         onClick={async () => {
           const success = await sendCustom(customList, setValidationError);
           if (success) {
