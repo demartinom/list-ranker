@@ -1,29 +1,27 @@
 # List Ranker
 
-List ranker is a game to help you order a list of related items by preference. The inspiration behind this project was [this Pokemon ranker](https://fio4ri.github.io/FavoritePokemon/).
+Ordering a list of 20 items by preference is cognitively exhausting if you try to do it all at once. List Ranker breaks it down into a series of simple head-to-head matchups. Each round you pick your preferred item, with the ability to skip the round, until you have created a ranked list based on your choices.
 
-The main purpose of this project was to utilize the knowledge I have gained in the use of Go as a backend language.
+Inspired by [this Pokémon ranker](https://fio4ri.github.io/FavoritePokemon/).
 
-## How to play
-
-Beginning a game of List Ranker is easy. All you have to do is click one of the premade lists to start a game. You will presented with two options from a pool of items. You then click the item that you prefer. If you can't choose between the two, there is an option to skip and be presented with a new pair of options.
+![Demo](listranker.gif)
 
 ## Tech Stack
 
-All logic for the game is written in Go, which is sent to the frontend using Gin. Axios is used to make API calls to the backend. I used [shadcn](https://ui.shadcn.com/) to speed up the process of building ui components.
+- **Backend:** Go with Gin — all ranking logic lives server-side
+- **Frontend:** React, TypeScript, shadcn/ui
+- **API:** Axios for client-server communication
 
-## Future Features
+## Features
 
-[] More premade lists
-<br>
-[x] Dark Mode
-<br>
-[x] Improved ranking algorithm
-<br>
-[x] Custom Lists
-<br>
-[] Better results display
-<br>
-[] Save results to files
-<br>
-[] Analytics
+- Premade lists to get started immediately
+- Custom list creation
+- Weighted ranking algorithm
+- Dark mode
+
+## Roadmap
+
+- [ ] Better results display
+- [ ] Save results to file
+- [ ] Analytics
+- [ ] More premade lists
